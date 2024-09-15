@@ -40,11 +40,25 @@ namespace BBSaveOverwrite
 
             if ((e.Modifiers == KeyModifiers.Alt) && (e.Key == Keys.S))
             {
-                CopyDirectory(@sourcefoldertextbox.Text, (@destfoldertextbox.Text + "\\1"), true);
+                try
+                {
+                    CopyDirectory(@sourcefoldertextbox.Text, (@destfoldertextbox.Text + "\\1"), true);
+                    playaudioloaded();
+                }
+                catch (Exception)
+                {
+                }
             }
             else if ((e.Modifiers == (KeyModifiers.Alt | KeyModifiers.Shift)) && (e.Key == Keys.S))
             {
-                CopyDirectory((@destfoldertextbox.Text + "\\1"), @sourcefoldertextbox.Text, true);
+                try
+                {
+                    CopyDirectory((@destfoldertextbox.Text + "\\1"), @sourcefoldertextbox.Text, true);
+                    playaudiobacked();
+                }
+                catch (Exception)
+                {
+                }
             }
 
         }
