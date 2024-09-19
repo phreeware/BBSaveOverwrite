@@ -1,5 +1,7 @@
-using System.Diagnostics;
+//using System.Diagnostics;
+using System;
 using System.Media;
+using System.Reflection.Metadata;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -7,12 +9,54 @@ namespace BBSaveOverwrite
 {
     public partial class bbsaveoverwriteform : Form
     {
+        
         public bbsaveoverwriteform()
         {
             InitializeComponent();
+            RegisterForRawInput();
+        }
+
+        //HOTKEY HANDLERS-----------------------------------------------------------------------------------------------------------------
+        void HotKeyManager_HotKeyPressed(object sender, HotKeyEventArgs e)
+        {
+
+            if ((e.Modifiers == KeyModifiers.Alt) && (e.Key == Keys.S))
+            {
+                CopyToDest();
+            }
+            else if ((e.Modifiers == (KeyModifiers.Alt | KeyModifiers.Shift)) && (e.Key == Keys.S))
+            {
+                CopyToSource();
+            }
 
         }
 
+        //COPY DEFINITIONS-----------------------------------------------------------------------------------------------------------------
+        public void CopyToDest()
+        {
+            try
+            {
+                CopyDirectory(@sourcefoldertextbox.Text, (@destfoldertextbox.Text + "\\1"), true);
+                playaudioloaded();
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        public void CopyToSource()
+        {
+            try
+            {
+                CopyDirectory((@destfoldertextbox.Text + "\\1"), @sourcefoldertextbox.Text, true);
+                playaudiobacked();
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        //AUDIO-----------------------------------------------------------------------------------------------------------------
         public void playaudioloaded()
         {
             using (var audioStream = new MemoryStream(Properties.Resource1.loaded))
@@ -23,7 +67,6 @@ namespace BBSaveOverwrite
                 }
             }
         }
-
         public void playaudiobacked()
         {
             using (var audioStream = new MemoryStream(Properties.Resource1.backed))
@@ -34,35 +77,16 @@ namespace BBSaveOverwrite
                 }
             }
         }
-
-        void HotKeyManager_HotKeyPressed(object sender, HotKeyEventArgs e)
+        private void loadedtestbutton_Click(object sender, EventArgs e)
         {
-
-            if ((e.Modifiers == KeyModifiers.Alt) && (e.Key == Keys.S))
-            {
-                try
-                {
-                    CopyDirectory(@sourcefoldertextbox.Text, (@destfoldertextbox.Text + "\\1"), true);
-                    playaudioloaded();
-                }
-                catch (Exception)
-                {
-                }
-            }
-            else if ((e.Modifiers == (KeyModifiers.Alt | KeyModifiers.Shift)) && (e.Key == Keys.S))
-            {
-                try
-                {
-                    CopyDirectory((@destfoldertextbox.Text + "\\1"), @sourcefoldertextbox.Text, true);
-                    playaudiobacked();
-                }
-                catch (Exception)
-                {
-                }
-            }
-
+            playaudioloaded();
+        }
+        private void backedtestbutton_Click(object sender, EventArgs e)
+        {
+            playaudiobacked();
         }
 
+        //BUTTONS-----------------------------------------------------------------------------------------------------------------
         private void sourcefolderbutton_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog sourcefolder = new FolderBrowserDialog();
@@ -75,7 +99,6 @@ namespace BBSaveOverwrite
             }
 
         }
-
         private void destfolderbutton_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog destfolder = new FolderBrowserDialog();
@@ -87,34 +110,16 @@ namespace BBSaveOverwrite
                 Properties.Settings.Default.Save();
             }
         }
-
         private void overwritedestbutton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                CopyDirectory(@sourcefoldertextbox.Text, (@destfoldertextbox.Text + "\\1"), true);
-                playaudioloaded();
-            }
-            catch (Exception)
-            {
-            }
-
+            CopyToDest();
         }
-
         private void overwritesourcebutton_Click(object sender, EventArgs e)
         {
-
-            try
-            {
-                CopyDirectory((@destfoldertextbox.Text + "\\1"), @sourcefoldertextbox.Text, true);
-                playaudiobacked();
-            }
-            catch (Exception)
-            {
-            }
-
+            CopyToSource();
         }
 
+        //COPY-----------------------------------------------------------------------------------------------------------------
         static void CopyDirectory(string sourceDir, string destinationDir, bool recursive)
         {
             // Get information about the source directory
@@ -152,18 +157,162 @@ namespace BBSaveOverwrite
             }
         }
 
-        private void loadedtestbutton_Click(object sender, EventArgs e)
+        //GAMEPAD-----------------------------------------------------------------------------------------------------------------
+        // Constants for raw input
+        private const int RID_INPUT = 0x10000003;
+        private const int RIM_TYPEHID = 2;
+
+        // Structs for raw input handling
+        [StructLayout(LayoutKind.Sequential)]
+        struct RAWINPUTDEVICE
         {
-            playaudioloaded();
+            public ushort UsagePage;
+            public ushort Usage;
+            public uint Flags;
+            public IntPtr Target;
         }
 
-        private void backedtestbutton_Click(object sender, EventArgs e)
+        [StructLayout(LayoutKind.Sequential)]
+        struct RAWINPUTHEADER
         {
-            playaudiobacked();
+            public uint Type;
+            public uint Size;
+            public IntPtr Device;
+            public IntPtr wParam;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        struct RAWINPUTHID
+        {
+            public uint Size;
+            public uint Count;
+            // Flexible array member (size depends on Size * Count)
+            public byte RawData; // Placeholder for the actual data array (handled later)
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        struct RAWINPUT
+        {
+            public RAWINPUTHEADER Header;
+            public RAWINPUTHID Hid;
+        }
+
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern uint GetRawInputData(IntPtr hRawInput, uint uiCommand, IntPtr pData, ref uint pcbSize, uint cbSizeHeader);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern bool RegisterRawInputDevices(RAWINPUTDEVICE[] pRawInputDevice, uint uiNumDevices, uint cbSize);
+
+        private bool L3Pressed = false;
+        //private bool R3Pressed = false;
+        private bool SelPressed = false;
+        private bool StartPressed = false;
+        private bool ComboTriggered = false;
+
+        // Register to receive raw input for HID devices (PS5 controller)
+        private void RegisterForRawInput()
+        {
+            RAWINPUTDEVICE[] rid = new RAWINPUTDEVICE[1];
+            rid[0].UsagePage = 0x01; // Generic Desktop Controls
+            rid[0].Usage = 0x05;     // Gamepad
+            rid[0].Flags = 0x100;    // Receive all inputs even if focus is not on the app
+            rid[0].Target = Handle;
+
+            if (!RegisterRawInputDevices(rid, (uint)rid.Length, (uint)Marshal.SizeOf(typeof(RAWINPUTDEVICE))))
+            {
+                return;
+            }
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            const int WM_INPUT = 0x00FF;
+
+            if (m.Msg == WM_INPUT)
+            {
+                uint dwSize = 0;
+                // Get the size of the raw input buffer
+                GetRawInputData(m.LParam, RID_INPUT, IntPtr.Zero, ref dwSize, (uint)Marshal.SizeOf(typeof(RAWINPUTHEADER)));
+
+                if (dwSize > 0)
+                {
+                    IntPtr rawDataBuffer = Marshal.AllocHGlobal((int)dwSize);
+                    try
+                    {
+                        // Get the raw input data
+                        if (GetRawInputData(m.LParam, RID_INPUT, rawDataBuffer, ref dwSize, (uint)Marshal.SizeOf(typeof(RAWINPUTHEADER))) == dwSize)
+                        {
+                            ProcessRawInput(rawDataBuffer, dwSize);
+                        }
+                    }
+                    finally
+                    {
+                        Marshal.FreeHGlobal(rawDataBuffer);
+                    }
+                }
+            }
+            base.WndProc(ref m);
+        }
+
+        private void ProcessRawInput(IntPtr rawDataBuffer, uint size)
+        {
+            RAWINPUTHEADER header = Marshal.PtrToStructure<RAWINPUTHEADER>(rawDataBuffer);
+
+            // If the raw input type is HID (i.e., controller input)
+            if (header.Type == RIM_TYPEHID)
+            {
+                IntPtr rawInputDataPtr = IntPtr.Add(rawDataBuffer, Marshal.SizeOf(typeof(RAWINPUTHEADER)));
+                RAWINPUTHID hidInput = Marshal.PtrToStructure<RAWINPUTHID>(rawInputDataPtr);
+
+                // HID report size is in hidInput.Size, and Count tells us how many reports are received
+                uint totalHidDataSize = hidInput.Size * hidInput.Count;
+
+                // Allocate buffer to store the HID data
+                byte[] hidData = new byte[totalHidDataSize];
+
+                // Copy the HID data from the raw buffer
+                IntPtr hidDataStart = IntPtr.Add(rawInputDataPtr, Marshal.SizeOf(typeof(RAWINPUTHID)));
+                Marshal.Copy(hidDataStart, hidData, 0, (int)totalHidDataSize);
+
+                // Log the raw HID data to see its structure
+                //Debug.WriteLine("HID Data: " + BitConverter.ToString(hidData));
+
+                // Check the third byte for L3 and R3
+                if (hidData.Length > 2)
+                {
+                    bool L3 = (hidData[2] & 0x40) != 0; // L3 is represented by bit 6 (0x40)
+                    //bool R3 = (hidData[2] & 0x80) != 0; // R3 is represented by bit 7 (0x80)
+                    bool Sel = (hidData[2] & 0x10) != 0; // Sel is represented by (0x10)
+                    bool Start = (hidData[2] & 0x20) != 0; // Start is represented by (0x20)
+
+                    // Detect when both L3 and Start are pressed
+                    if (L3 && Start && !ComboTriggered)
+                    {
+                        ComboTriggered = true;
+                        CopyToSource();
+                    }
+                    else if (!L3 || !Start)
+                    {
+                        ComboTriggered = false;
+                    }
+
+                    // Check for single Select button press
+                    if (Sel && !SelPressed)
+                    {
+                        SelPressed = true;
+                        CopyToDest();
+                    }
+                    else if (!Sel)
+                    {
+                        SelPressed = false;
+                    }
+                }
+            }
         }
 
     }
 
+    //HOTKEY-----------------------------------------------------------------------------------------------------------------
     public static class HotKeyManager
     {
         public static event EventHandler<HotKeyEventArgs> HotKeyPressed;
@@ -282,5 +431,6 @@ namespace BBSaveOverwrite
         Windows = 8,
         NoRepeat = 0x4000
     }
+
 
 }

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "BBSaveOverwrite": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    }
+  }
+}
