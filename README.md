@@ -14,6 +14,6 @@ Make sure to quit out to the main menu (online/offline selection visible) before
 A sound will be played when a save has been loaded or backed up successfully.
 
 
-Installation: just run the .exe (it's 100% safe, fwiw you can run it through www.virustotal.com if you don't trust this)
+Installation: just run the .exe
 
 Disclaimer: I'm a noob at programming so this might not work for everyone, but the tool is 100% working for me on the latest Windows 10 build while running shadPS4
