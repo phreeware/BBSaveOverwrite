@@ -44,10 +44,12 @@ namespace BBSaveOverwrite
             destfolderqlabel = new Label();
             overwritedestfolderqlabel = new Label();
             overwritesourcefolderqlabel = new Label();
+            dualsensehkqlabel = new Label();
             loadedtestbutton = new Button();
             label1 = new Label();
             label2 = new Label();
             backedtestbutton = new Button();
+            dualsensecheckbox = new CheckBox();
             SuspendLayout();
             // 
             // sourcefoldertextbox
@@ -88,7 +90,7 @@ namespace BBSaveOverwrite
             // 
             desthotkeylabel.AutoSize = true;
             desthotkeylabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            desthotkeylabel.Location = new Point(606, 469);
+            desthotkeylabel.Location = new Point(606, 655);
             desthotkeylabel.Name = "desthotkeylabel";
             desthotkeylabel.Size = new Size(268, 48);
             desthotkeylabel.TabIndex = 4;
@@ -96,7 +98,7 @@ namespace BBSaveOverwrite
             // 
             // overwritedestbutton
             // 
-            overwritedestbutton.Location = new Point(123, 459);
+            overwritedestbutton.Location = new Point(123, 645);
             overwritedestbutton.Name = "overwritedestbutton";
             overwritedestbutton.Size = new Size(435, 69);
             overwritedestbutton.TabIndex = 5;
@@ -106,7 +108,7 @@ namespace BBSaveOverwrite
             // 
             // overwritesourcebutton
             // 
-            overwritesourcebutton.Location = new Point(123, 589);
+            overwritesourcebutton.Location = new Point(123, 775);
             overwritesourcebutton.Name = "overwritesourcebutton";
             overwritesourcebutton.Size = new Size(435, 69);
             overwritesourcebutton.TabIndex = 6;
@@ -118,7 +120,7 @@ namespace BBSaveOverwrite
             // 
             sourcehotkeylabel.AutoSize = true;
             sourcehotkeylabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            sourcehotkeylabel.Location = new Point(606, 599);
+            sourcehotkeylabel.Location = new Point(606, 785);
             sourcehotkeylabel.Name = "sourcehotkeylabel";
             sourcehotkeylabel.Size = new Size(392, 48);
             sourcehotkeylabel.TabIndex = 7;
@@ -153,7 +155,7 @@ namespace BBSaveOverwrite
             overwritedestfolderqlabel.AutoSize = true;
             overwritedestfolderqlabel.BackColor = Color.Red;
             overwritedestfolderqlabel.ForeColor = SystemColors.Info;
-            overwritedestfolderqlabel.Location = new Point(1854, 469);
+            overwritedestfolderqlabel.Location = new Point(1854, 655);
             overwritedestfolderqlabel.Name = "overwritedestfolderqlabel";
             overwritedestfolderqlabel.Size = new Size(36, 48);
             overwritedestfolderqlabel.TabIndex = 10;
@@ -165,16 +167,28 @@ namespace BBSaveOverwrite
             overwritesourcefolderqlabel.AutoSize = true;
             overwritesourcefolderqlabel.BackColor = Color.Red;
             overwritesourcefolderqlabel.ForeColor = SystemColors.Info;
-            overwritesourcefolderqlabel.Location = new Point(1854, 599);
+            overwritesourcefolderqlabel.Location = new Point(1854, 785);
             overwritesourcefolderqlabel.Name = "overwritesourcefolderqlabel";
             overwritesourcefolderqlabel.Size = new Size(36, 48);
             overwritesourcefolderqlabel.TabIndex = 11;
             overwritesourcefolderqlabel.Text = "?";
             toolTip1.SetToolTip(overwritesourcefolderqlabel, "Reverse Overwrites the current shadPS4 savestate to the selected Source Folder.");
             // 
+            // dualsensehkqlabel
+            // 
+            dualsensehkqlabel.AutoSize = true;
+            dualsensehkqlabel.BackColor = Color.Red;
+            dualsensehkqlabel.ForeColor = SystemColors.Info;
+            dualsensehkqlabel.Location = new Point(1854, 896);
+            dualsensehkqlabel.Name = "dualsensehkqlabel";
+            dualsensehkqlabel.Size = new Size(36, 48);
+            dualsensehkqlabel.TabIndex = 17;
+            dualsensehkqlabel.Text = "?";
+            toolTip1.SetToolTip(dualsensehkqlabel, "Enable PS5 DualSense controller hotkeys");
+            // 
             // loadedtestbutton
             // 
-            loadedtestbutton.Location = new Point(1371, 468);
+            loadedtestbutton.Location = new Point(1371, 654);
             loadedtestbutton.Name = "loadedtestbutton";
             loadedtestbutton.Size = new Size(50, 50);
             loadedtestbutton.TabIndex = 12;
@@ -188,7 +202,7 @@ namespace BBSaveOverwrite
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(1154, 469);
+            label1.Location = new Point(1154, 655);
             label1.Name = "label1";
             label1.Size = new Size(201, 48);
             label1.TabIndex = 13;
@@ -200,7 +214,7 @@ namespace BBSaveOverwrite
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(1154, 599);
+            label2.Location = new Point(1154, 785);
             label2.Name = "label2";
             label2.Size = new Size(201, 48);
             label2.TabIndex = 14;
@@ -208,7 +222,7 @@ namespace BBSaveOverwrite
             // 
             // backedtestbutton
             // 
-            backedtestbutton.Location = new Point(1371, 597);
+            backedtestbutton.Location = new Point(1371, 783);
             backedtestbutton.Name = "backedtestbutton";
             backedtestbutton.Size = new Size(50, 50);
             backedtestbutton.TabIndex = 15;
@@ -216,13 +230,27 @@ namespace BBSaveOverwrite
             backedtestbutton.UseVisualStyleBackColor = true;
             backedtestbutton.Click += backedtestbutton_Click;
             // 
+            // dualsensecheckbox
+            // 
+            dualsensecheckbox.AutoSize = true;
+            dualsensecheckbox.BackColor = Color.Transparent;
+            dualsensecheckbox.ForeColor = Color.White;
+            dualsensecheckbox.Location = new Point(1371, 892);
+            dualsensecheckbox.Name = "dualsensecheckbox";
+            dualsensecheckbox.Size = new Size(430, 52);
+            dualsensecheckbox.TabIndex = 16;
+            dualsensecheckbox.Text = "PS5 DualSense hotkeys";
+            dualsensecheckbox.UseVisualStyleBackColor = false;
+            // 
             // bbsaveoverwriteform
             // 
             AutoScaleDimensions = new SizeF(20F, 48F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1943, 862);
+            ClientSize = new Size(1943, 1012);
+            Controls.Add(dualsensehkqlabel);
+            Controls.Add(dualsensecheckbox);
             Controls.Add(backedtestbutton);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -252,6 +280,7 @@ namespace BBSaveOverwrite
         {
             sourcefoldertextbox.Text = Properties.Settings.Default.SourceFolderSetting;
             destfoldertextbox.Text = Properties.Settings.Default.DestFolderSetting;
+            dualsensecheckbox.Checked = Properties.Settings.Default.DualSenseHotkeysSetting;
 
             HotKeyManager.RegisterHotKey(Keys.S, KeyModifiers.Alt);
             HotKeyManager.RegisterHotKey(Keys.S, KeyModifiers.Alt | KeyModifiers.Shift);
@@ -262,6 +291,7 @@ namespace BBSaveOverwrite
         {
             Properties.Settings.Default.SourceFolderSetting = sourcefoldertextbox.Text;
             Properties.Settings.Default.DestFolderSetting = destfoldertextbox.Text;
+            Properties.Settings.Default.DualSenseHotkeysSetting = dualsensecheckbox.Checked;
             Properties.Settings.Default.Save();
         }
 
@@ -284,5 +314,7 @@ namespace BBSaveOverwrite
         private Label label1;
         private Label label2;
         private Button backedtestbutton;
+        private CheckBox dualsensecheckbox;
+        private Label dualsensehkqlabel;
     }
 }

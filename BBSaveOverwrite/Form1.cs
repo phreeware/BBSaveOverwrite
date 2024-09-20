@@ -9,7 +9,7 @@ namespace BBSaveOverwrite
 {
     public partial class bbsaveoverwriteform : Form
     {
-        
+
         public bbsaveoverwriteform()
         {
             InitializeComponent();
@@ -41,6 +41,7 @@ namespace BBSaveOverwrite
             }
             catch (Exception)
             {
+                //MessageBox.Show("nuh-uh dest");
             }
         }
 
@@ -53,6 +54,7 @@ namespace BBSaveOverwrite
             }
             catch (Exception)
             {
+                //MessageBox.Show("nuh-uh source");
             }
         }
 
@@ -86,7 +88,7 @@ namespace BBSaveOverwrite
             playaudiobacked();
         }
 
-        //BUTTONS-----------------------------------------------------------------------------------------------------------------
+        //UI ELEMENTS/BUTTONS-----------------------------------------------------------------------------------------------------------------
         private void sourcefolderbutton_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog sourcefolder = new FolderBrowserDialog();
@@ -230,24 +232,27 @@ namespace BBSaveOverwrite
 
             if (m.Msg == WM_INPUT)
             {
-                uint dwSize = 0;
-                // Get the size of the raw input buffer
-                GetRawInputData(m.LParam, RID_INPUT, IntPtr.Zero, ref dwSize, (uint)Marshal.SizeOf(typeof(RAWINPUTHEADER)));
-
-                if (dwSize > 0)
+                if (dualsensecheckbox.Checked)
                 {
-                    IntPtr rawDataBuffer = Marshal.AllocHGlobal((int)dwSize);
-                    try
+                    uint dwSize = 0;
+                    // Get the size of the raw input buffer
+                    GetRawInputData(m.LParam, RID_INPUT, IntPtr.Zero, ref dwSize, (uint)Marshal.SizeOf(typeof(RAWINPUTHEADER)));
+
+                    if (dwSize > 0)
                     {
-                        // Get the raw input data
-                        if (GetRawInputData(m.LParam, RID_INPUT, rawDataBuffer, ref dwSize, (uint)Marshal.SizeOf(typeof(RAWINPUTHEADER))) == dwSize)
+                        IntPtr rawDataBuffer = Marshal.AllocHGlobal((int)dwSize);
+                        try
                         {
-                            ProcessRawInput(rawDataBuffer, dwSize);
+                            // Get the raw input data
+                            if (GetRawInputData(m.LParam, RID_INPUT, rawDataBuffer, ref dwSize, (uint)Marshal.SizeOf(typeof(RAWINPUTHEADER))) == dwSize)
+                            {
+                                ProcessRawInput(rawDataBuffer, dwSize);
+                            }
                         }
-                    }
-                    finally
-                    {
-                        Marshal.FreeHGlobal(rawDataBuffer);
+                        finally
+                        {
+                            Marshal.FreeHGlobal(rawDataBuffer);
+                        }
                     }
                 }
             }
