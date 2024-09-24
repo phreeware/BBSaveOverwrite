@@ -45,43 +45,51 @@ namespace BBSaveOverwrite
             overwritedestfolderqlabel = new Label();
             overwritesourcefolderqlabel = new Label();
             dualsensehkqlabel = new Label();
+            archivefolderqlabel = new Label();
+            archivesaveqlabel = new Label();
             loadedtestbutton = new Button();
             label1 = new Label();
             label2 = new Label();
             backedtestbutton = new Button();
             dualsensecheckbox = new CheckBox();
+            archivefoldertextbox = new TextBox();
+            archivefolderbutton = new Button();
+            archivedtestbutton = new Button();
+            label3 = new Label();
+            archivehotkeylabel = new Label();
+            archivesavebutton = new Button();
             SuspendLayout();
             // 
             // sourcefoldertextbox
             // 
-            sourcefoldertextbox.Location = new Point(456, 198);
+            sourcefoldertextbox.Location = new Point(456, 117);
             sourcefoldertextbox.Name = "sourcefoldertextbox";
             sourcefoldertextbox.Size = new Size(1365, 55);
             sourcefoldertextbox.TabIndex = 0;
             // 
             // sourcefolderbutton
             // 
-            sourcefolderbutton.Location = new Point(123, 191);
+            sourcefolderbutton.Location = new Point(63, 110);
             sourcefolderbutton.Name = "sourcefolderbutton";
-            sourcefolderbutton.Size = new Size(312, 69);
+            sourcefolderbutton.Size = new Size(372, 69);
             sourcefolderbutton.TabIndex = 1;
-            sourcefolderbutton.Text = "Source Folder";
+            sourcefolderbutton.Text = "Save backup folder";
             sourcefolderbutton.UseVisualStyleBackColor = true;
             sourcefolderbutton.Click += sourcefolderbutton_Click;
             // 
             // destfolderbutton
             // 
-            destfolderbutton.Location = new Point(123, 322);
+            destfolderbutton.Location = new Point(63, 241);
             destfolderbutton.Name = "destfolderbutton";
-            destfolderbutton.Size = new Size(312, 69);
+            destfolderbutton.Size = new Size(372, 69);
             destfolderbutton.TabIndex = 2;
-            destfolderbutton.Text = "Dest. Folder";
+            destfolderbutton.Text = "user/savedata folder";
             destfolderbutton.UseVisualStyleBackColor = true;
             destfolderbutton.Click += destfolderbutton_Click;
             // 
             // destfoldertextbox
             // 
-            destfoldertextbox.Location = new Point(456, 329);
+            destfoldertextbox.Location = new Point(456, 248);
             destfoldertextbox.Name = "destfoldertextbox";
             destfoldertextbox.Size = new Size(1365, 55);
             destfoldertextbox.TabIndex = 3;
@@ -89,49 +97,57 @@ namespace BBSaveOverwrite
             // desthotkeylabel
             // 
             desthotkeylabel.AutoSize = true;
+            desthotkeylabel.BackColor = Color.Transparent;
             desthotkeylabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            desthotkeylabel.Location = new Point(606, 655);
+            desthotkeylabel.ForeColor = Color.White;
+            desthotkeylabel.Location = new Point(456, 505);
             desthotkeylabel.Name = "desthotkeylabel";
-            desthotkeylabel.Size = new Size(268, 48);
+            desthotkeylabel.Size = new Size(151, 48);
             desthotkeylabel.TabIndex = 4;
-            desthotkeylabel.Text = "Hotkey: ALT+S";
+            desthotkeylabel.Text = "Hotkey:";
             // 
             // overwritedestbutton
             // 
-            overwritedestbutton.Location = new Point(123, 645);
+            overwritedestbutton.BackColor = Color.DarkTurquoise;
+            overwritedestbutton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            overwritedestbutton.Location = new Point(63, 495);
             overwritedestbutton.Name = "overwritedestbutton";
-            overwritedestbutton.Size = new Size(435, 69);
+            overwritedestbutton.Size = new Size(372, 69);
             overwritedestbutton.TabIndex = 5;
-            overwritedestbutton.Text = "Overwrite Dest. Folder";
-            overwritedestbutton.UseVisualStyleBackColor = true;
+            overwritedestbutton.Text = "Load save";
+            overwritedestbutton.UseVisualStyleBackColor = false;
             overwritedestbutton.Click += overwritedestbutton_Click;
             // 
             // overwritesourcebutton
             // 
-            overwritesourcebutton.Location = new Point(123, 775);
+            overwritesourcebutton.BackColor = Color.Coral;
+            overwritesourcebutton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            overwritesourcebutton.Location = new Point(63, 625);
             overwritesourcebutton.Name = "overwritesourcebutton";
-            overwritesourcebutton.Size = new Size(435, 69);
+            overwritesourcebutton.Size = new Size(372, 69);
             overwritesourcebutton.TabIndex = 6;
-            overwritesourcebutton.Text = "Overwrite Source Folder";
-            overwritesourcebutton.UseVisualStyleBackColor = true;
+            overwritesourcebutton.Text = "Backup save";
+            overwritesourcebutton.UseVisualStyleBackColor = false;
             overwritesourcebutton.Click += overwritesourcebutton_Click;
             // 
             // sourcehotkeylabel
             // 
             sourcehotkeylabel.AutoSize = true;
+            sourcehotkeylabel.BackColor = Color.Transparent;
             sourcehotkeylabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            sourcehotkeylabel.Location = new Point(606, 785);
+            sourcehotkeylabel.ForeColor = Color.White;
+            sourcehotkeylabel.Location = new Point(456, 635);
             sourcehotkeylabel.Name = "sourcehotkeylabel";
-            sourcehotkeylabel.Size = new Size(392, 48);
+            sourcehotkeylabel.Size = new Size(151, 48);
             sourcehotkeylabel.TabIndex = 7;
-            sourcehotkeylabel.Text = "Hotkey: ALT+SHIFT+S";
+            sourcehotkeylabel.Text = "Hotkey:";
             // 
             // sourcefolderqlabel
             // 
             sourcefolderqlabel.AutoSize = true;
             sourcefolderqlabel.BackColor = Color.Red;
             sourcefolderqlabel.ForeColor = SystemColors.Info;
-            sourcefolderqlabel.Location = new Point(1854, 201);
+            sourcefolderqlabel.Location = new Point(1854, 120);
             sourcefolderqlabel.Name = "sourcefolderqlabel";
             sourcefolderqlabel.Size = new Size(36, 48);
             sourcefolderqlabel.TabIndex = 8;
@@ -143,7 +159,7 @@ namespace BBSaveOverwrite
             destfolderqlabel.AutoSize = true;
             destfolderqlabel.BackColor = Color.Red;
             destfolderqlabel.ForeColor = SystemColors.Info;
-            destfolderqlabel.Location = new Point(1854, 332);
+            destfolderqlabel.Location = new Point(1854, 251);
             destfolderqlabel.Name = "destfolderqlabel";
             destfolderqlabel.Size = new Size(36, 48);
             destfolderqlabel.TabIndex = 9;
@@ -155,7 +171,7 @@ namespace BBSaveOverwrite
             overwritedestfolderqlabel.AutoSize = true;
             overwritedestfolderqlabel.BackColor = Color.Red;
             overwritedestfolderqlabel.ForeColor = SystemColors.Info;
-            overwritedestfolderqlabel.Location = new Point(1854, 655);
+            overwritedestfolderqlabel.Location = new Point(1854, 505);
             overwritedestfolderqlabel.Name = "overwritedestfolderqlabel";
             overwritedestfolderqlabel.Size = new Size(36, 48);
             overwritedestfolderqlabel.TabIndex = 10;
@@ -167,7 +183,7 @@ namespace BBSaveOverwrite
             overwritesourcefolderqlabel.AutoSize = true;
             overwritesourcefolderqlabel.BackColor = Color.Red;
             overwritesourcefolderqlabel.ForeColor = SystemColors.Info;
-            overwritesourcefolderqlabel.Location = new Point(1854, 785);
+            overwritesourcefolderqlabel.Location = new Point(1854, 635);
             overwritesourcefolderqlabel.Name = "overwritesourcefolderqlabel";
             overwritesourcefolderqlabel.Size = new Size(36, 48);
             overwritesourcefolderqlabel.TabIndex = 11;
@@ -184,11 +200,35 @@ namespace BBSaveOverwrite
             dualsensehkqlabel.Size = new Size(36, 48);
             dualsensehkqlabel.TabIndex = 17;
             dualsensehkqlabel.Text = "?";
-            toolTip1.SetToolTip(dualsensehkqlabel, "Enable PS5 DualSense controller hotkeys");
+            toolTip1.SetToolTip(dualsensehkqlabel, "Enable PS5 DualSense controller hotkeys:\r\nCreate (Select) = Load save\r\nL3 + Option (Start) = Backup save\r\nR3 + Option (Start) = Archive backup");
+            // 
+            // archivefolderqlabel
+            // 
+            archivefolderqlabel.AutoSize = true;
+            archivefolderqlabel.BackColor = Color.Red;
+            archivefolderqlabel.ForeColor = SystemColors.Info;
+            archivefolderqlabel.Location = new Point(1854, 375);
+            archivefolderqlabel.Name = "archivefolderqlabel";
+            archivefolderqlabel.Size = new Size(36, 48);
+            archivefolderqlabel.TabIndex = 20;
+            archivefolderqlabel.Text = "?";
+            toolTip1.SetToolTip(archivefolderqlabel, "Select an archive folder, to backup the current save folder to");
+            // 
+            // archivesaveqlabel
+            // 
+            archivesaveqlabel.AutoSize = true;
+            archivesaveqlabel.BackColor = Color.Red;
+            archivesaveqlabel.ForeColor = SystemColors.Info;
+            archivesaveqlabel.Location = new Point(1854, 761);
+            archivesaveqlabel.Name = "archivesaveqlabel";
+            archivesaveqlabel.Size = new Size(36, 48);
+            archivesaveqlabel.TabIndex = 23;
+            archivesaveqlabel.Text = "?";
+            toolTip1.SetToolTip(archivesaveqlabel, "This is meant to \"archive\" a good save backup, that can't get overwritten by the tool");
             // 
             // loadedtestbutton
             // 
-            loadedtestbutton.Location = new Point(1371, 654);
+            loadedtestbutton.Location = new Point(1588, 504);
             loadedtestbutton.Name = "loadedtestbutton";
             loadedtestbutton.Size = new Size(50, 50);
             loadedtestbutton.TabIndex = 12;
@@ -202,7 +242,7 @@ namespace BBSaveOverwrite
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(1154, 655);
+            label1.Location = new Point(1371, 505);
             label1.Name = "label1";
             label1.Size = new Size(201, 48);
             label1.TabIndex = 13;
@@ -214,7 +254,7 @@ namespace BBSaveOverwrite
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(1154, 785);
+            label2.Location = new Point(1371, 635);
             label2.Name = "label2";
             label2.Size = new Size(201, 48);
             label2.TabIndex = 14;
@@ -222,7 +262,7 @@ namespace BBSaveOverwrite
             // 
             // backedtestbutton
             // 
-            backedtestbutton.Location = new Point(1371, 783);
+            backedtestbutton.Location = new Point(1588, 633);
             backedtestbutton.Name = "backedtestbutton";
             backedtestbutton.Size = new Size(50, 50);
             backedtestbutton.TabIndex = 15;
@@ -242,6 +282,69 @@ namespace BBSaveOverwrite
             dualsensecheckbox.Text = "PS5 DualSense hotkeys";
             dualsensecheckbox.UseVisualStyleBackColor = false;
             // 
+            // archivefoldertextbox
+            // 
+            archivefoldertextbox.Location = new Point(456, 372);
+            archivefoldertextbox.Name = "archivefoldertextbox";
+            archivefoldertextbox.Size = new Size(1365, 55);
+            archivefoldertextbox.TabIndex = 19;
+            // 
+            // archivefolderbutton
+            // 
+            archivefolderbutton.Location = new Point(63, 365);
+            archivefolderbutton.Name = "archivefolderbutton";
+            archivefolderbutton.Size = new Size(372, 69);
+            archivefolderbutton.TabIndex = 18;
+            archivefolderbutton.Text = "Save archive folder";
+            archivefolderbutton.UseVisualStyleBackColor = true;
+            archivefolderbutton.Click += archivefolderbutton_Click;
+            // 
+            // archivedtestbutton
+            // 
+            archivedtestbutton.Location = new Point(1588, 759);
+            archivedtestbutton.Name = "archivedtestbutton";
+            archivedtestbutton.Size = new Size(50, 50);
+            archivedtestbutton.TabIndex = 25;
+            archivedtestbutton.Text = "A";
+            archivedtestbutton.UseVisualStyleBackColor = true;
+            archivedtestbutton.Click += archivedtestbutton_Click;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(1371, 761);
+            label3.Name = "label3";
+            label3.Size = new Size(201, 48);
+            label3.TabIndex = 24;
+            label3.Text = "Soundtest:";
+            // 
+            // archivehotkeylabel
+            // 
+            archivehotkeylabel.AutoSize = true;
+            archivehotkeylabel.BackColor = Color.Transparent;
+            archivehotkeylabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            archivehotkeylabel.ForeColor = Color.White;
+            archivehotkeylabel.Location = new Point(456, 761);
+            archivehotkeylabel.Name = "archivehotkeylabel";
+            archivehotkeylabel.Size = new Size(151, 48);
+            archivehotkeylabel.TabIndex = 22;
+            archivehotkeylabel.Text = "Hotkey:";
+            // 
+            // archivesavebutton
+            // 
+            archivesavebutton.BackColor = Color.Plum;
+            archivesavebutton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            archivesavebutton.Location = new Point(63, 751);
+            archivesavebutton.Name = "archivesavebutton";
+            archivesavebutton.Size = new Size(372, 69);
+            archivesavebutton.TabIndex = 21;
+            archivesavebutton.Text = "Archive backup";
+            archivesavebutton.UseVisualStyleBackColor = false;
+            archivesavebutton.Click += archivesavebutton_Click;
+            // 
             // bbsaveoverwriteform
             // 
             AutoScaleDimensions = new SizeF(20F, 48F);
@@ -249,6 +352,14 @@ namespace BBSaveOverwrite
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1943, 1012);
+            Controls.Add(archivedtestbutton);
+            Controls.Add(label3);
+            Controls.Add(archivesaveqlabel);
+            Controls.Add(archivehotkeylabel);
+            Controls.Add(archivesavebutton);
+            Controls.Add(archivefolderqlabel);
+            Controls.Add(archivefoldertextbox);
+            Controls.Add(archivefolderbutton);
             Controls.Add(dualsensehkqlabel);
             Controls.Add(dualsensecheckbox);
             Controls.Add(backedtestbutton);
@@ -280,6 +391,7 @@ namespace BBSaveOverwrite
         {
             sourcefoldertextbox.Text = Properties.Settings.Default.SourceFolderSetting;
             destfoldertextbox.Text = Properties.Settings.Default.DestFolderSetting;
+            archivefoldertextbox.Text = Properties.Settings.Default.ArchiveFolderSetting;
             dualsensecheckbox.Checked = Properties.Settings.Default.DualSenseHotkeysSetting;
 
             HotKeyManager.RegisterHotKey(Keys.S, KeyModifiers.Alt);
@@ -291,6 +403,7 @@ namespace BBSaveOverwrite
         {
             Properties.Settings.Default.SourceFolderSetting = sourcefoldertextbox.Text;
             Properties.Settings.Default.DestFolderSetting = destfoldertextbox.Text;
+            Properties.Settings.Default.ArchiveFolderSetting = archivefoldertextbox.Text;
             Properties.Settings.Default.DualSenseHotkeysSetting = dualsensecheckbox.Checked;
             Properties.Settings.Default.Save();
         }
@@ -316,5 +429,13 @@ namespace BBSaveOverwrite
         private Button backedtestbutton;
         private CheckBox dualsensecheckbox;
         private Label dualsensehkqlabel;
+        private Label archivefolderqlabel;
+        public TextBox archivefoldertextbox;
+        private Button archivefolderbutton;
+        private Button archivedtestbutton;
+        private Label label3;
+        private Label archivesaveqlabel;
+        private Label archivehotkeylabel;
+        private Button archivesavebutton;
     }
 }

@@ -58,5 +58,17 @@ namespace BBSaveOverwrite.Properties {
                 this["DualSenseHotkeysSetting"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ArchiveFolderSetting {
+            get {
+                return ((string)(this["ArchiveFolderSetting"]));
+            }
+            set {
+                this["ArchiveFolderSetting"] = value;
+            }
+        }
     }
 }

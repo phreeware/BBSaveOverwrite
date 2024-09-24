@@ -41,7 +41,7 @@ namespace BBSaveOverwrite
             }
             catch (Exception)
             {
-                //MessageBox.Show("nuh-uh dest");
+                MessageBox.Show("nuh-uh Load");
             }
         }
 
@@ -54,7 +54,20 @@ namespace BBSaveOverwrite
             }
             catch (Exception)
             {
-                //MessageBox.Show("nuh-uh source");
+                MessageBox.Show("nuh-uh Backup");
+            }
+        }
+
+        public void CopyToArchive()
+        {
+            try
+            {
+                CopyDirectory(@sourcefoldertextbox.Text, @archivefoldertextbox.Text, true);
+                playaudioarchived();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("nuh-uh Archive");
             }
         }
 
@@ -79,6 +92,16 @@ namespace BBSaveOverwrite
                 }
             }
         }
+        public void playaudioarchived()
+        {
+            using (var audioStream = new MemoryStream(Properties.Resource1.archived))
+            {
+                using (var player = new SoundPlayer(audioStream))
+                {
+                    player.Play();
+                }
+            }
+        }
         private void loadedtestbutton_Click(object sender, EventArgs e)
         {
             playaudioloaded();
@@ -86,6 +109,10 @@ namespace BBSaveOverwrite
         private void backedtestbutton_Click(object sender, EventArgs e)
         {
             playaudiobacked();
+        }
+        private void archivedtestbutton_Click(object sender, EventArgs e)
+        {
+            playaudioarchived();
         }
 
         //UI ELEMENTS/BUTTONS-----------------------------------------------------------------------------------------------------------------
@@ -112,6 +139,17 @@ namespace BBSaveOverwrite
                 Properties.Settings.Default.Save();
             }
         }
+        private void archivefolderbutton_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog archivefolder = new FolderBrowserDialog();
+            archivefolder.Description = "Select an archive folder, to backup the current save folder to";
+            if (archivefolder.ShowDialog() == DialogResult.OK)
+            {
+                archivefoldertextbox.Text = archivefolder.SelectedPath;
+                Properties.Settings.Default.ArchiveFolderSetting = archivefolder.SelectedPath;
+                Properties.Settings.Default.Save();
+            }
+        }
         private void overwritedestbutton_Click(object sender, EventArgs e)
         {
             CopyToDest();
@@ -119,6 +157,10 @@ namespace BBSaveOverwrite
         private void overwritesourcebutton_Click(object sender, EventArgs e)
         {
             CopyToSource();
+        }
+        private void archivesavebutton_Click(object sender, EventArgs e)
+        {
+            CopyToArchive();
         }
 
         //COPY-----------------------------------------------------------------------------------------------------------------
@@ -205,11 +247,9 @@ namespace BBSaveOverwrite
         [DllImport("user32.dll", SetLastError = true)]
         private static extern bool RegisterRawInputDevices(RAWINPUTDEVICE[] pRawInputDevice, uint uiNumDevices, uint cbSize);
 
-        private bool L3Pressed = false;
-        //private bool R3Pressed = false;
         private bool SelPressed = false;
-        private bool StartPressed = false;
-        private bool ComboTriggered = false;
+        private bool BackupComboTriggered = false;
+        private bool ArchiveComboTriggered = false;
 
         // Register to receive raw input for HID devices (PS5 controller)
         private void RegisterForRawInput()
@@ -286,19 +326,30 @@ namespace BBSaveOverwrite
                 if (hidData.Length > 2)
                 {
                     bool L3 = (hidData[2] & 0x40) != 0; // L3 is represented by bit 6 (0x40)
-                    //bool R3 = (hidData[2] & 0x80) != 0; // R3 is represented by bit 7 (0x80)
+                    bool R3 = (hidData[2] & 0x80) != 0; // R3 is represented by bit 7 (0x80)
                     bool Sel = (hidData[2] & 0x10) != 0; // Sel is represented by (0x10)
                     bool Start = (hidData[2] & 0x20) != 0; // Start is represented by (0x20)
 
                     // Detect when both L3 and Start are pressed
-                    if (L3 && Start && !ComboTriggered)
+                    if (L3 && Start && !BackupComboTriggered)
                     {
-                        ComboTriggered = true;
+                        BackupComboTriggered = true;
                         CopyToSource();
                     }
                     else if (!L3 || !Start)
                     {
-                        ComboTriggered = false;
+                        BackupComboTriggered = false;
+                    }
+
+                    // Detect when both R3 and Start are pressed
+                    if (R3 && Start && !ArchiveComboTriggered)
+                    {
+                        ArchiveComboTriggered = true;
+                        CopyToArchive();
+                    }
+                    else if (!R3 || !Start)
+                    {
+                        ArchiveComboTriggered = false;
                     }
 
                     // Check for single Select button press
@@ -314,7 +365,6 @@ namespace BBSaveOverwrite
                 }
             }
         }
-
     }
 
     //HOTKEY-----------------------------------------------------------------------------------------------------------------
