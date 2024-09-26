@@ -4,6 +4,7 @@ using System.Media;
 using System.Reflection.Metadata;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace BBSaveOverwrite
 {
@@ -20,15 +21,52 @@ namespace BBSaveOverwrite
         void HotKeyManager_HotKeyPressed(object sender, HotKeyEventArgs e)
         {
 
-            if ((e.Modifiers == KeyModifiers.Alt) && (e.Key == Keys.S))
+            if ((e.Modifiers == KeyModifiers.ALT) && (e.Key == Keys.S))
             {
                 CopyToDest();
             }
-            else if ((e.Modifiers == (KeyModifiers.Alt | KeyModifiers.Shift)) && (e.Key == Keys.S))
+            else if ((e.Modifiers == (KeyModifiers.ALT | KeyModifiers.SHIFT)) && (e.Key == Keys.S))
             {
                 CopyToSource();
             }
 
+        }
+
+        private void PopulateHotKeyComboBoxes()
+        {
+
+            // Loop through the Modifiers enum and add Modifier keys
+            foreach (KeyModifiers modifiers in Enum.GetValues(typeof(KeyModifiers)))
+            {
+                // Only add normal Modifiers
+                if (modifiers != KeyModifiers.NoRepeat)
+                {
+                    loadmodifier1combobox.Items.Add(modifiers);
+                    backupmodifier1combobox.Items.Add(modifiers);
+                    archivemodifier1combobox.Items.Add(modifiers);
+                    loadmodifier2combobox.Items.Add(modifiers);
+                    backupmodifier2combobox.Items.Add(modifiers);
+                    archivemodifier2combobox.Items.Add(modifiers);
+                }
+            }
+
+            // Loop through the Keys enum and only add alphabetic keys (A-Z)
+            foreach (Keys key in Enum.GetValues(typeof(Keys)))
+            {
+                // Only add keys from A to Z
+                if (key >= Keys.A && key <= Keys.Z)
+                {
+                    loadmodifier3combobox.Items.Add(key);
+                    backupmodifier3combobox.Items.Add(key);
+                    archivemodifier3combobox.Items.Add(key);
+                }
+            }
+        }
+        private void loadhotkeysavebutton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(loadmodifier1combobox.SelectedItem.ToString());
+
+            //HotKeyManager.RegisterHotKey('Keys.' , KeyModifiers.Alt | KeyModifiers.Shift);
         }
 
         //COPY DEFINITIONS-----------------------------------------------------------------------------------------------------------------
@@ -41,7 +79,7 @@ namespace BBSaveOverwrite
             }
             catch (Exception)
             {
-                MessageBox.Show("nuh-uh Load");
+                //MessageBox.Show("nuh-uh Load");
             }
         }
 
@@ -54,7 +92,7 @@ namespace BBSaveOverwrite
             }
             catch (Exception)
             {
-                MessageBox.Show("nuh-uh Backup");
+                // MessageBox.Show("nuh-uh Backup");
             }
         }
 
@@ -67,7 +105,7 @@ namespace BBSaveOverwrite
             }
             catch (Exception)
             {
-                MessageBox.Show("nuh-uh Archive");
+                //MessageBox.Show("nuh-uh Archive");
             }
         }
 
@@ -161,6 +199,80 @@ namespace BBSaveOverwrite
         private void archivesavebutton_Click(object sender, EventArgs e)
         {
             CopyToArchive();
+        }
+
+        private void loadmodifier1combobox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateComboBoxOptions(loadmodifier1combobox, loadmodifier2combobox);
+        }
+        private void loadmodifier2combobox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateComboBoxOptions(loadmodifier2combobox, loadmodifier1combobox);
+        }
+
+        private void backupmodifier1combobox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateComboBoxOptions(backupmodifier1combobox, backupmodifier2combobox);
+        }
+
+        private void backupmodifier2combobox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateComboBoxOptions(backupmodifier2combobox, backupmodifier1combobox);
+        }
+
+        private void archivemodifier1combobox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateComboBoxOptions(archivemodifier1combobox, archivemodifier2combobox);
+        }
+
+        private void archivemodifier2combobox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateComboBoxOptions(archivemodifier2combobox, archivemodifier1combobox);
+        }
+
+        // Updates the options in the targetComboBox based on the selection in the sourceComboBox
+        private void UpdateComboBoxOptions(ComboBox sourceComboBox, ComboBox targetComboBox)
+        {
+            // Temporarily remove the SelectedIndexChanged event handler for the target ComboBox to avoid loops
+            targetComboBox.SelectedIndexChanged -= TargetComboBox_SelectedIndexChanged;
+
+            // Store the currently selected item in the targetComboBox (if any)
+            var selectedInTarget = targetComboBox.SelectedItem;
+
+            // Clear all items in the targetComboBox
+            targetComboBox.Items.Clear();
+
+            // Repopulate the targetComboBox, excluding the item selected in the sourceComboBox
+            foreach (KeyModifiers modifiers in Enum.GetValues(typeof(KeyModifiers)))
+            {
+                if (modifiers != KeyModifiers.NoRepeat)
+                {
+                    if (!modifiers.Equals(sourceComboBox.SelectedItem)) // Do not add the selected item from source
+                    {
+                        targetComboBox.Items.Add(modifiers);
+                    }
+                }
+            }
+
+            // Re-select the previously selected item if it still exists in the targetComboBox
+            if (selectedInTarget != null && targetComboBox.Items.Contains(selectedInTarget))
+            {
+                targetComboBox.SelectedItem = selectedInTarget;
+            }
+            else
+            {
+                // Optionally: Clear the selection if the previously selected item was removed
+                targetComboBox.SelectedIndex = -1;
+            }
+
+            // Reattach the SelectedIndexChanged event handler
+            targetComboBox.SelectedIndexChanged += TargetComboBox_SelectedIndexChanged;
+        }
+
+        // Use this method as a dynamic target for detaching and reattaching events
+        private void TargetComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Placeholder for dynamic switching between ComboBox1 and ComboBox2
         }
 
         //COPY-----------------------------------------------------------------------------------------------------------------
@@ -480,10 +592,10 @@ namespace BBSaveOverwrite
     [Flags]
     public enum KeyModifiers
     {
-        Alt = 1,
-        Control = 2,
-        Shift = 4,
-        Windows = 8,
+        ALT = 1,
+        CTRL = 2,
+        SHIFT = 4,
+        WIN = 8,
         NoRepeat = 0x4000
     }
 
