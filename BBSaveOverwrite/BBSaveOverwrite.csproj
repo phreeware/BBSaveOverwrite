@@ -7,7 +7,14 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationIcon>blood_vial_ocU_icon.ico</ApplicationIcon>
+    <Version>$(VersionPrefix) 2.0</Version>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Properties\DataSources\**" />
+    <EmbeddedResource Remove="Properties\DataSources\**" />
+    <None Remove="Properties\DataSources\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <Content Include="blood_vial_ocU_icon.ico" />
@@ -47,11 +54,6 @@
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Properties\DataSources\" />
-    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
 
 </Project>

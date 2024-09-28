@@ -120,6 +120,11 @@
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="archivesaveqlabel.ToolTip" xml:space="preserve">
+    <value>"Archive backup" is meant to "archive" a good save backup that can't get overwritten by the tool, for safety reasons :)
+  - creates a new folder with a current date- and timestamp.
+"OK" saves and registers the selected hotkey combination.</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

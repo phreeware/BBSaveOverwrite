@@ -4,7 +4,7 @@ using System.Media;
 using System.Reflection.Metadata;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-//using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
 
 namespace BBSaveOverwrite
 {
@@ -20,20 +20,74 @@ namespace BBSaveOverwrite
         //HOTKEY HANDLERS-----------------------------------------------------------------------------------------------------------------
         void HotKeyManager_HotKeyPressed(object sender, HotKeyEventArgs e)
         {
-
-            if ((e.Modifiers == KeyModifiers.ALT) && (e.Key == Keys.S))
+            // Ensure that UI updates are performed on the UI thread
+            if (InvokeRequired)
             {
-                CopyToDest();
-            }
-            else if ((e.Modifiers == (KeyModifiers.ALT | KeyModifiers.SHIFT)) && (e.Key == Keys.S))
-            {
-                CopyToSource();
+                // Use Invoke to marshal the call to the UI thread
+                this.Invoke(new Action(() => HotKeyManager_HotKeyPressed(sender, e)));
+                return;
             }
 
+            if ((loadmodifier3combobox.SelectedItem != "-") && (loadmodifier1combobox.SelectedItem != "-" || loadmodifier2combobox.SelectedItem != "-"))
+            {
+                if (loadmodifier1combobox.SelectedItem != "-" && loadmodifier2combobox.SelectedItem != "-")
+                {
+                    if ((e.Modifiers == ((KeyModifiers)loadmodifier1combobox.SelectedItem | (KeyModifiers)loadmodifier2combobox.SelectedItem)) && (e.Key == (Keys)loadmodifier3combobox.SelectedItem)) CopyToDest();
+                }
+                else if (loadmodifier1combobox.SelectedItem != "-")
+                {
+                    if ((e.Modifiers == ((KeyModifiers)loadmodifier1combobox.SelectedItem)) && (e.Key == (Keys)loadmodifier3combobox.SelectedItem)) CopyToDest();
+                }
+                else if (loadmodifier2combobox.SelectedItem != "-")
+                {
+                    if ((e.Modifiers == ((KeyModifiers)loadmodifier2combobox.SelectedItem)) && (e.Key == (Keys)loadmodifier3combobox.SelectedItem)) CopyToDest();
+                }
+            }
+
+            if ((backupmodifier3combobox.SelectedItem != "-") && (backupmodifier1combobox.SelectedItem != "-" || backupmodifier2combobox.SelectedItem != "-"))
+            {
+                if (backupmodifier1combobox.SelectedItem != "-" && backupmodifier2combobox.SelectedItem != "-")
+                {
+                    if ((e.Modifiers == ((KeyModifiers)backupmodifier1combobox.SelectedItem | (KeyModifiers)backupmodifier2combobox.SelectedItem)) && (e.Key == (Keys)backupmodifier3combobox.SelectedItem)) CopyToSource();
+                }
+                else if (backupmodifier1combobox.SelectedItem != "-")
+                {
+                    if ((e.Modifiers == ((KeyModifiers)backupmodifier1combobox.SelectedItem)) && (e.Key == (Keys)backupmodifier3combobox.SelectedItem)) CopyToSource();
+                }
+                else if (backupmodifier2combobox.SelectedItem != "-")
+                {
+                    if ((e.Modifiers == ((KeyModifiers)backupmodifier2combobox.SelectedItem)) && (e.Key == (Keys)backupmodifier3combobox.SelectedItem)) CopyToSource();
+                }
+            }
+
+            if ((archivemodifier3combobox.SelectedItem != "-") && (archivemodifier1combobox.SelectedItem != "-" || archivemodifier2combobox.SelectedItem != "-"))
+            {
+                if (archivemodifier1combobox.SelectedItem != "-" && archivemodifier2combobox.SelectedItem != "-")
+                {
+                    if ((e.Modifiers == ((KeyModifiers)archivemodifier1combobox.SelectedItem | (KeyModifiers)archivemodifier2combobox.SelectedItem)) && (e.Key == (Keys)archivemodifier3combobox.SelectedItem)) CopyToArchive();
+                }
+                else if (archivemodifier1combobox.SelectedItem != "-")
+                {
+                    if ((e.Modifiers == ((KeyModifiers)archivemodifier1combobox.SelectedItem)) && (e.Key == (Keys)archivemodifier3combobox.SelectedItem)) CopyToArchive();
+                }
+                else if (archivemodifier2combobox.SelectedItem != "-")
+                {
+                    if ((e.Modifiers == ((KeyModifiers)archivemodifier2combobox.SelectedItem)) && (e.Key == (Keys)archivemodifier3combobox.SelectedItem)) CopyToArchive();
+                }
+            }
         }
 
         private void PopulateHotKeyComboBoxes()
         {
+            loadmodifier1combobox.Items.Add("-");
+            backupmodifier1combobox.Items.Add("-");
+            archivemodifier1combobox.Items.Add("-");
+            loadmodifier2combobox.Items.Add("-");
+            backupmodifier2combobox.Items.Add("-");
+            archivemodifier2combobox.Items.Add("-");
+            loadmodifier3combobox.Items.Add("-");
+            backupmodifier3combobox.Items.Add("-");
+            archivemodifier3combobox.Items.Add("-");
 
             // Loop through the Modifiers enum and add Modifier keys
             foreach (KeyModifiers modifiers in Enum.GetValues(typeof(KeyModifiers)))
@@ -64,9 +118,81 @@ namespace BBSaveOverwrite
         }
         private void loadhotkeysavebutton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(loadmodifier1combobox.SelectedItem.ToString());
-
-            //HotKeyManager.RegisterHotKey('Keys.' , KeyModifiers.Alt | KeyModifiers.Shift);
+            if ((loadmodifier3combobox.SelectedItem != "-") && (loadmodifier1combobox.SelectedItem != "-" || loadmodifier2combobox.SelectedItem != "-"))
+            {
+                if (loadmodifier1combobox.SelectedItem != "-" && loadmodifier2combobox.SelectedItem != "-")
+                {
+                    HotKeyManager.RegisterHotKey((Keys)loadmodifier3combobox.SelectedItem, (KeyModifiers)loadmodifier1combobox.SelectedItem | (KeyModifiers)loadmodifier2combobox.SelectedItem);
+                    MessageBox.Show("Load save hotkey registered: " + loadmodifier1combobox.SelectedItem.ToString() + " " + loadmodifier2combobox.SelectedItem.ToString() + " " + loadmodifier3combobox.SelectedItem.ToString());
+                }
+                else if (loadmodifier1combobox.SelectedItem != "-")
+                {
+                    HotKeyManager.RegisterHotKey((Keys)loadmodifier3combobox.SelectedItem, (KeyModifiers)loadmodifier1combobox.SelectedItem);
+                    MessageBox.Show("Load save hotkey registered: " + loadmodifier1combobox.SelectedItem.ToString() + " " + loadmodifier3combobox.SelectedItem.ToString());
+                }
+                else if (loadmodifier2combobox.SelectedItem != "-")
+                {
+                    HotKeyManager.RegisterHotKey((Keys)loadmodifier3combobox.SelectedItem, (KeyModifiers)loadmodifier2combobox.SelectedItem);
+                    MessageBox.Show("Load save hotkey registered: " + loadmodifier2combobox.SelectedItem.ToString() + " " + loadmodifier3combobox.SelectedItem.ToString());
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select at least one modifier and a key");
+                return;
+            }
+        }
+        private void backuphotkeysavebutton_Click(object sender, EventArgs e)
+        {
+            if ((backupmodifier3combobox.SelectedItem != "-") && (backupmodifier1combobox.SelectedItem != "-" || backupmodifier2combobox.SelectedItem != "-"))
+            {
+                if (backupmodifier1combobox.SelectedItem != "-" && backupmodifier2combobox.SelectedItem != "-")
+                {
+                    HotKeyManager.RegisterHotKey((Keys)backupmodifier3combobox.SelectedItem, (KeyModifiers)backupmodifier1combobox.SelectedItem | (KeyModifiers)backupmodifier2combobox.SelectedItem);
+                    MessageBox.Show("Backup save hotkey registered: " + backupmodifier1combobox.SelectedItem.ToString() + " " + backupmodifier2combobox.SelectedItem.ToString() + " " + backupmodifier3combobox.SelectedItem.ToString());
+                }
+                else if (backupmodifier1combobox.SelectedItem != "-")
+                {
+                    HotKeyManager.RegisterHotKey((Keys)backupmodifier3combobox.SelectedItem, (KeyModifiers)backupmodifier1combobox.SelectedItem);
+                    MessageBox.Show("Backup save hotkey registered: " + backupmodifier1combobox.SelectedItem.ToString() + " " + backupmodifier3combobox.SelectedItem.ToString());
+                }
+                else if (backupmodifier2combobox.SelectedItem != "-")
+                {
+                    HotKeyManager.RegisterHotKey((Keys)backupmodifier3combobox.SelectedItem, (KeyModifiers)backupmodifier2combobox.SelectedItem);
+                    MessageBox.Show("Backup save hotkey registered: " + backupmodifier2combobox.SelectedItem.ToString() + " " + backupmodifier3combobox.SelectedItem.ToString());
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select at least one modifier and a key");
+                return;
+            }
+        }
+        private void archivehotkeysavebutton_Click(object sender, EventArgs e)
+        {
+            if ((archivemodifier3combobox.SelectedItem != "-") && (archivemodifier1combobox.SelectedItem != "-" || archivemodifier2combobox.SelectedItem != "-"))
+            {
+                if (archivemodifier1combobox.SelectedItem != "-" && archivemodifier2combobox.SelectedItem != "-")
+                {
+                    HotKeyManager.RegisterHotKey((Keys)archivemodifier3combobox.SelectedItem, (KeyModifiers)archivemodifier1combobox.SelectedItem | (KeyModifiers)archivemodifier2combobox.SelectedItem);
+                    MessageBox.Show("Archive backup hotkey registered: " + archivemodifier1combobox.SelectedItem.ToString() + " " + archivemodifier2combobox.SelectedItem.ToString() + " " + archivemodifier3combobox.SelectedItem.ToString());
+                }
+                else if (archivemodifier1combobox.SelectedItem != "-")
+                {
+                    HotKeyManager.RegisterHotKey((Keys)archivemodifier3combobox.SelectedItem, (KeyModifiers)archivemodifier1combobox.SelectedItem);
+                    MessageBox.Show("Archive backup hotkey registered: " + archivemodifier1combobox.SelectedItem.ToString() + " " + archivemodifier3combobox.SelectedItem.ToString());
+                }
+                else if (archivemodifier2combobox.SelectedItem != "-")
+                {
+                    HotKeyManager.RegisterHotKey((Keys)archivemodifier3combobox.SelectedItem, (KeyModifiers)archivemodifier2combobox.SelectedItem);
+                    MessageBox.Show("Archive backup hotkey registered: " + archivemodifier2combobox.SelectedItem.ToString() + " " + archivemodifier3combobox.SelectedItem.ToString());
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select at least one modifier and a key");
+                return;
+            }
         }
 
         //COPY DEFINITIONS-----------------------------------------------------------------------------------------------------------------
@@ -92,7 +218,7 @@ namespace BBSaveOverwrite
             }
             catch (Exception)
             {
-                // MessageBox.Show("nuh-uh Backup");
+                //MessageBox.Show("nuh-uh Backup");
             }
         }
 
@@ -100,7 +226,7 @@ namespace BBSaveOverwrite
         {
             try
             {
-                CopyDirectory(@sourcefoldertextbox.Text, @archivefoldertextbox.Text, true);
+                CopyDirectory(@sourcefoldertextbox.Text, @archivefoldertextbox.Text + "\\1 - " + DateTime.Now.ToString("yyyy.MM.dd hh.mm.ss tt"), true);
                 playaudioarchived();
             }
             catch (Exception)
@@ -157,7 +283,7 @@ namespace BBSaveOverwrite
         private void sourcefolderbutton_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog sourcefolder = new FolderBrowserDialog();
-            sourcefolder.Description = "Select a '1' folder (name doesn't matter) from a shadPS4 'user/savedata' save";
+            sourcefolder.Description = "Select a '1' folder (name doesn't matter) from a shadPS4 'user/savedata' save backup";
             if (sourcefolder.ShowDialog() == DialogResult.OK)
             {
                 sourcefoldertextbox.Text = sourcefolder.SelectedPath;
@@ -169,7 +295,7 @@ namespace BBSaveOverwrite
         private void destfolderbutton_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog destfolder = new FolderBrowserDialog();
-            destfolder.Description = "Select your shadPS4 user/'savedata' destination folder";
+            destfolder.Description = "Select your shadPS4 user/'savedata' folder";
             if (destfolder.ShowDialog() == DialogResult.OK)
             {
                 destfoldertextbox.Text = destfolder.SelectedPath;
@@ -180,7 +306,7 @@ namespace BBSaveOverwrite
         private void archivefolderbutton_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog archivefolder = new FolderBrowserDialog();
-            archivefolder.Description = "Select an archive folder, to backup the current save folder to";
+            archivefolder.Description = "Select an archive folder to archive/backup the save backup folder to";
             if (archivefolder.ShowDialog() == DialogResult.OK)
             {
                 archivefoldertextbox.Text = archivefolder.SelectedPath;
@@ -201,78 +327,79 @@ namespace BBSaveOverwrite
             CopyToArchive();
         }
 
+        private bool _isUpdatingComboBoxes = false; // Flag to prevent event loops
+
         private void loadmodifier1combobox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UpdateComboBoxOptions(loadmodifier1combobox, loadmodifier2combobox);
+            if (!_isUpdatingComboBoxes) UpdateComboBoxOptions(loadmodifier1combobox, loadmodifier2combobox);
         }
         private void loadmodifier2combobox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UpdateComboBoxOptions(loadmodifier2combobox, loadmodifier1combobox);
+            if (!_isUpdatingComboBoxes) UpdateComboBoxOptions(loadmodifier2combobox, loadmodifier1combobox);
         }
 
         private void backupmodifier1combobox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UpdateComboBoxOptions(backupmodifier1combobox, backupmodifier2combobox);
+            if (!_isUpdatingComboBoxes) UpdateComboBoxOptions(backupmodifier1combobox, backupmodifier2combobox);
         }
 
         private void backupmodifier2combobox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UpdateComboBoxOptions(backupmodifier2combobox, backupmodifier1combobox);
+            if (!_isUpdatingComboBoxes) UpdateComboBoxOptions(backupmodifier2combobox, backupmodifier1combobox);
         }
 
         private void archivemodifier1combobox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UpdateComboBoxOptions(archivemodifier1combobox, archivemodifier2combobox);
+            if (!_isUpdatingComboBoxes) UpdateComboBoxOptions(archivemodifier1combobox, archivemodifier2combobox);
         }
 
         private void archivemodifier2combobox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UpdateComboBoxOptions(archivemodifier2combobox, archivemodifier1combobox);
+            if (!_isUpdatingComboBoxes) UpdateComboBoxOptions(archivemodifier2combobox, archivemodifier1combobox);
         }
 
         // Updates the options in the targetComboBox based on the selection in the sourceComboBox
         private void UpdateComboBoxOptions(ComboBox sourceComboBox, ComboBox targetComboBox)
         {
-            // Temporarily remove the SelectedIndexChanged event handler for the target ComboBox to avoid loops
-            targetComboBox.SelectedIndexChanged -= TargetComboBox_SelectedIndexChanged;
-
-            // Store the currently selected item in the targetComboBox (if any)
-            var selectedInTarget = targetComboBox.SelectedItem;
-
-            // Clear all items in the targetComboBox
-            targetComboBox.Items.Clear();
-
-            // Repopulate the targetComboBox, excluding the item selected in the sourceComboBox
-            foreach (KeyModifiers modifiers in Enum.GetValues(typeof(KeyModifiers)))
+            try
             {
-                if (modifiers != KeyModifiers.NoRepeat)
+                _isUpdatingComboBoxes = true; // Disable event handling during updates
+
+                // Store the currently selected item in the targetComboBox (if any)
+                var selectedInTarget = targetComboBox.SelectedItem;
+
+                // Clear all items in the targetComboBox
+                targetComboBox.Items.Clear();
+
+                targetComboBox.Items.Add("-");
+
+                // Repopulate the targetComboBox, excluding the item selected in the sourceComboBox
+                foreach (KeyModifiers modifiers in Enum.GetValues(typeof(KeyModifiers)))
                 {
-                    if (!modifiers.Equals(sourceComboBox.SelectedItem)) // Do not add the selected item from source
+                    if (modifiers != KeyModifiers.NoRepeat)
                     {
-                        targetComboBox.Items.Add(modifiers);
+                        if (!modifiers.Equals(sourceComboBox.SelectedItem)) // Do not add the selected item from source
+                        {
+                            targetComboBox.Items.Add(modifiers);
+                        }
                     }
                 }
-            }
 
-            // Re-select the previously selected item if it still exists in the targetComboBox
-            if (selectedInTarget != null && targetComboBox.Items.Contains(selectedInTarget))
+                // Re-select the previously selected item if it still exists in the targetComboBox
+                if (selectedInTarget != null && targetComboBox.Items.Contains(selectedInTarget))
+                {
+                    targetComboBox.SelectedItem = selectedInTarget;
+                }
+                else
+                {
+                    // Optionally: Clear the selection if the previously selected item was removed
+                    targetComboBox.SelectedIndex = -1;
+                }
+            }
+            finally
             {
-                targetComboBox.SelectedItem = selectedInTarget;
+                _isUpdatingComboBoxes = false; // Re-enable event handling after update
             }
-            else
-            {
-                // Optionally: Clear the selection if the previously selected item was removed
-                targetComboBox.SelectedIndex = -1;
-            }
-
-            // Reattach the SelectedIndexChanged event handler
-            targetComboBox.SelectedIndexChanged += TargetComboBox_SelectedIndexChanged;
-        }
-
-        // Use this method as a dynamic target for detaching and reattaching events
-        private void TargetComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Placeholder for dynamic switching between ComboBox1 and ComboBox2
         }
 
         //COPY-----------------------------------------------------------------------------------------------------------------
