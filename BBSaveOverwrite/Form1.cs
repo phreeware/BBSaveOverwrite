@@ -405,6 +405,9 @@ namespace BBSaveOverwrite
         //COPY-----------------------------------------------------------------------------------------------------------------
         static void CopyDirectory(string sourceDir, string destinationDir, bool recursive)
         {
+            // Backup existing destination directory if it exists
+            BackupDestination(destinationDir);
+
             // Get information about the source directory
             var dir = new DirectoryInfo(sourceDir);
 
@@ -412,14 +415,10 @@ namespace BBSaveOverwrite
             if (!dir.Exists)
                 throw new DirectoryNotFoundException($"Source directory not found: {dir.FullName}");
 
-            // czech if BB save
-
-
             // Cache directories before we start copying
             DirectoryInfo[] dirs = dir.GetDirectories();
 
             // Create the destination directory
-
             Directory.CreateDirectory(destinationDir);
 
             // Get the files in the source directory and copy to the destination directory
@@ -436,6 +435,30 @@ namespace BBSaveOverwrite
                 {
                     string newDestinationDir = Path.Combine(destinationDir, subDir.Name);
                     CopyDirectory(subDir.FullName, newDestinationDir, true);
+                }
+            }
+        }
+
+        // Method to back up existing contents in the destination directory
+        static void BackupDestination(string destinationDir)
+        {
+            // Only back up if the directory exists
+            if (Directory.Exists(destinationDir))
+            {
+                // Create the "BBSaveOverwrite_autobackup" folder inside the destination directory
+                string backupDir = Path.Combine(destinationDir, "BBSaveOverwrite_autobackup");
+                Directory.CreateDirectory(backupDir);
+
+                // Copy all existing files and directories from the destination directory to the backup
+                foreach (string dirPath in Directory.GetDirectories(destinationDir, "*", SearchOption.AllDirectories))
+                {
+                    Directory.CreateDirectory(dirPath.Replace(destinationDir, backupDir));
+                }
+
+                foreach (string filePath in Directory.GetFiles(destinationDir, "*.*", SearchOption.AllDirectories))
+                {
+                    string destFilePath = filePath.Replace(destinationDir, backupDir);
+                    File.Copy(filePath, destFilePath, true);
                 }
             }
         }
