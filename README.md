@@ -31,3 +31,4 @@ Have fun!
 
 ToDo's:
 - make auto-backup before overwriting a folder
+- check that save and archive folders are not the same
