@@ -1,5 +1,6 @@
 //using System.Diagnostics;
 using System;
+using System.IO;
 using System.Media;
 using System.Reflection.Metadata;
 using System.Runtime.InteropServices;
@@ -200,7 +201,8 @@ namespace BBSaveOverwrite
         {
             try
             {
-                CopyDirectory(@sourcefoldertextbox.Text, (@destfoldertextbox.Text + "\\1"), true);
+                //CopyDirectory(@sourcefoldertextbox.Text, (@destfoldertextbox.Text + "\\1"), true);
+                CopyDirectory(@sourcefoldertextbox.Text, (@destfoldertextbox.Text + "\\1"), "load");
                 playaudioloaded();
             }
             catch (Exception)
@@ -213,7 +215,8 @@ namespace BBSaveOverwrite
         {
             try
             {
-                CopyDirectory((@destfoldertextbox.Text + "\\1"), @sourcefoldertextbox.Text, true);
+                //CopyDirectory((@destfoldertextbox.Text + "\\1"), @sourcefoldertextbox.Text, true);
+                CopyDirectory((@destfoldertextbox.Text + "\\1"), @sourcefoldertextbox.Text, "backup");
                 playaudiobacked();
             }
             catch (Exception)
@@ -226,7 +229,8 @@ namespace BBSaveOverwrite
         {
             try
             {
-                CopyDirectory(@sourcefoldertextbox.Text, @archivefoldertextbox.Text + "\\1 - " + DateTime.Now.ToString("yyyy.MM.dd hh.mm.ss tt"), true);
+                //CopyDirectory(@sourcefoldertextbox.Text, @archivefoldertextbox.Text + "\\1 - " + DateTime.Now.ToString("yyyy.MM.dd hh.mm.ss tt"), true);
+                CopyDirectory(@sourcefoldertextbox.Text, @archivefoldertextbox.Text + "\\1 - " + DateTime.Now.ToString("yyyy.MM.dd hh.mm.ss tt") + "\\1", "archive");
                 playaudioarchived();
             }
             catch (Exception)
@@ -403,10 +407,29 @@ namespace BBSaveOverwrite
         }
 
         //COPY-----------------------------------------------------------------------------------------------------------------
-        static void CopyDirectory(string sourceDir, string destinationDir, bool recursive)
+        public void CopyDirectory(string sourceDir, string destinationDir, string mode)
         {
-            // Backup existing destination directory if it exists
-            BackupDestination(destinationDir);
+            // Check if selected save and archive folders are the same
+            if (sourcefoldertextbox.Text == archivefoldertextbox.Text)
+            {
+                MessageBox.Show("Aborting. Please select different folders for save and archive backup.");
+                return;
+            }
+            
+            switch (mode)
+            {
+                case "load":
+                    // Backup existing destination directory if it exists
+                    BackupDestination(destinationDir);
+                    break;
+                case "backup":
+                    // Backup existing destination directory if it exists
+                    BackupDestination(destinationDir);
+                    break;
+                case "archive":
+
+                    break;
+            }
 
             // Get information about the source directory
             var dir = new DirectoryInfo(sourceDir);
@@ -415,44 +438,80 @@ namespace BBSaveOverwrite
             if (!dir.Exists)
                 throw new DirectoryNotFoundException($"Source directory not found: {dir.FullName}");
 
-            // Cache directories before we start copying
-            DirectoryInfo[] dirs = dir.GetDirectories();
-
-            // Create the destination directory
-            Directory.CreateDirectory(destinationDir);
-
             // Get the files in the source directory and copy to the destination directory
-            foreach (FileInfo file in dir.GetFiles())
+            foreach (string dirPath in Directory.GetDirectories(sourceDir, "*", SearchOption.AllDirectories))
             {
-                string targetFilePath = Path.Combine(destinationDir, file.Name);
-                file.CopyTo(targetFilePath, true);
+                Directory.CreateDirectory(dirPath.Replace(sourceDir, destinationDir));
             }
 
-            // If recursive and copying subdirectories, recursively call this method
-            if (recursive)
+            foreach (string filePath in Directory.GetFiles(sourceDir, "*.*", SearchOption.AllDirectories))
             {
-                foreach (DirectoryInfo subDir in dirs)
-                {
-                    string newDestinationDir = Path.Combine(destinationDir, subDir.Name);
-                    CopyDirectory(subDir.FullName, newDestinationDir, true);
-                }
+                string destFilePath = filePath.Replace(sourceDir, destinationDir);
+                File.Copy(filePath, destFilePath, true);
             }
+
         }
 
+        //public void CopyDirectory(string sourceDir, string destinationDir, bool recursive)
+        //{
+        //    // Check if selected save and archive folders are the same
+        //    if (sourcefoldertextbox.Text == archivefoldertextbox.Text)
+        //    {
+        //        MessageBox.Show("Aborting. Please select different folders for save and archive backup.");
+        //        return;
+        //    }
+
+        //    // Backup existing destination directory if it exists
+        //    BackupDestination(destinationDir);
+
+        //    // Get information about the source directory
+        //    var dir = new DirectoryInfo(sourceDir);
+
+        //    // Check if the source directory exists
+        //    if (!dir.Exists)
+        //        throw new DirectoryNotFoundException($"Source directory not found: {dir.FullName}");
+
+        //    // Cache directories before we start copying
+        //    DirectoryInfo[] dirs = dir.GetDirectories();
+
+        //    // Create the destination directory
+        //    Directory.CreateDirectory(destinationDir);
+
+        //    // Get the files in the source directory and copy to the destination directory
+        //    foreach (FileInfo file in dir.GetFiles())
+        //    {
+        //        string targetFilePath = Path.Combine(destinationDir, file.Name);
+        //        file.CopyTo(targetFilePath, true);
+        //    }
+
+        //    // If recursive and copying subdirectories, recursively call this method
+        //    if (recursive)
+        //    {
+        //        foreach (DirectoryInfo subDir in dirs)
+        //        {
+        //            string newDestinationDir = Path.Combine(destinationDir, subDir.Name);
+        //            CopyDirectory(subDir.FullName, newDestinationDir, true);
+        //        }
+        //    }
+        //}
+
         // Method to back up existing contents in the destination directory
-        static void BackupDestination(string destinationDir)
+        public void BackupDestination(string destinationDir)
         {
             // Only back up if the directory exists
             if (Directory.Exists(destinationDir))
             {
                 // Create the "BBSaveOverwrite_autobackup" folder inside the destination directory
-                string backupDir = Path.Combine(destinationDir, "BBSaveOverwrite_autobackup");
-                Directory.CreateDirectory(backupDir);
+                string backupDir = Path.Combine(new DirectoryInfo(destinationDir).Parent.FullName, "BBSaveOverwrite_autobackup");
+                //Directory.CreateDirectory(backupDir);
 
                 // Copy all existing files and directories from the destination directory to the backup
                 foreach (string dirPath in Directory.GetDirectories(destinationDir, "*", SearchOption.AllDirectories))
                 {
-                    Directory.CreateDirectory(dirPath.Replace(destinationDir, backupDir));
+                    if (dirPath.Contains("BBSaveOverwrite_autobackup") == false)
+                    {
+                        Directory.CreateDirectory(dirPath.Replace(destinationDir, backupDir));
+                    }
                 }
 
                 foreach (string filePath in Directory.GetFiles(destinationDir, "*.*", SearchOption.AllDirectories))
@@ -460,6 +519,7 @@ namespace BBSaveOverwrite
                     string destFilePath = filePath.Replace(destinationDir, backupDir);
                     File.Copy(filePath, destFilePath, true);
                 }
+
             }
         }
 

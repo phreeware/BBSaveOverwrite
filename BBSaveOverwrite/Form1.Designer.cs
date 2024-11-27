@@ -76,16 +76,18 @@ namespace BBSaveOverwrite
             // 
             // sourcefoldertextbox
             // 
-            sourcefoldertextbox.Location = new Point(457, 109);
+            sourcefoldertextbox.Location = new Point(160, 34);
+            sourcefoldertextbox.Margin = new Padding(1, 1, 1, 1);
             sourcefoldertextbox.Name = "sourcefoldertextbox";
-            sourcefoldertextbox.Size = new Size(1364, 55);
+            sourcefoldertextbox.Size = new Size(480, 23);
             sourcefoldertextbox.TabIndex = 1;
             // 
             // sourcefolderbutton
             // 
-            sourcefolderbutton.Location = new Point(63, 109);
+            sourcefolderbutton.Location = new Point(22, 34);
+            sourcefolderbutton.Margin = new Padding(1, 1, 1, 1);
             sourcefolderbutton.Name = "sourcefolderbutton";
-            sourcefolderbutton.Size = new Size(371, 74);
+            sourcefolderbutton.Size = new Size(130, 23);
             sourcefolderbutton.TabIndex = 0;
             sourcefolderbutton.Text = "Save backup folder";
             sourcefolderbutton.UseVisualStyleBackColor = true;
@@ -93,9 +95,10 @@ namespace BBSaveOverwrite
             // 
             // destfolderbutton
             // 
-            destfolderbutton.Location = new Point(63, 240);
+            destfolderbutton.Location = new Point(22, 75);
+            destfolderbutton.Margin = new Padding(1, 1, 1, 1);
             destfolderbutton.Name = "destfolderbutton";
-            destfolderbutton.Size = new Size(371, 74);
+            destfolderbutton.Size = new Size(130, 23);
             destfolderbutton.TabIndex = 3;
             destfolderbutton.Text = "user/savedata folder";
             destfolderbutton.UseVisualStyleBackColor = true;
@@ -103,9 +106,10 @@ namespace BBSaveOverwrite
             // 
             // destfoldertextbox
             // 
-            destfoldertextbox.Location = new Point(457, 240);
+            destfoldertextbox.Location = new Point(160, 75);
+            destfoldertextbox.Margin = new Padding(1, 1, 1, 1);
             destfoldertextbox.Name = "destfoldertextbox";
-            destfoldertextbox.Size = new Size(1364, 55);
+            destfoldertextbox.Size = new Size(480, 23);
             destfoldertextbox.TabIndex = 4;
             // 
             // desthotkeylabel
@@ -114,9 +118,10 @@ namespace BBSaveOverwrite
             desthotkeylabel.BackColor = Color.Transparent;
             desthotkeylabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             desthotkeylabel.ForeColor = Color.White;
-            desthotkeylabel.Location = new Point(457, 506);
+            desthotkeylabel.Location = new Point(160, 158);
+            desthotkeylabel.Margin = new Padding(1, 0, 1, 0);
             desthotkeylabel.Name = "desthotkeylabel";
-            desthotkeylabel.Size = new Size(151, 48);
+            desthotkeylabel.Size = new Size(51, 15);
             desthotkeylabel.TabIndex = 4;
             desthotkeylabel.Text = "Hotkey:";
             // 
@@ -124,9 +129,10 @@ namespace BBSaveOverwrite
             // 
             overwritedestbutton.BackColor = Color.DarkTurquoise;
             overwritedestbutton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            overwritedestbutton.Location = new Point(63, 499);
+            overwritedestbutton.Location = new Point(22, 156);
+            overwritedestbutton.Margin = new Padding(1, 1, 1, 1);
             overwritedestbutton.Name = "overwritedestbutton";
-            overwritedestbutton.Size = new Size(371, 70);
+            overwritedestbutton.Size = new Size(130, 22);
             overwritedestbutton.TabIndex = 9;
             overwritedestbutton.Text = "Load save";
             overwritedestbutton.UseVisualStyleBackColor = false;
@@ -136,9 +142,10 @@ namespace BBSaveOverwrite
             // 
             overwritesourcebutton.BackColor = Color.Coral;
             overwritesourcebutton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            overwritesourcebutton.Location = new Point(63, 627);
+            overwritesourcebutton.Location = new Point(22, 196);
+            overwritesourcebutton.Margin = new Padding(1, 1, 1, 1);
             overwritesourcebutton.Name = "overwritesourcebutton";
-            overwritesourcebutton.Size = new Size(371, 70);
+            overwritesourcebutton.Size = new Size(130, 22);
             overwritesourcebutton.TabIndex = 16;
             overwritesourcebutton.Text = "Backup save";
             overwritesourcebutton.UseVisualStyleBackColor = false;
@@ -150,9 +157,10 @@ namespace BBSaveOverwrite
             sourcehotkeylabel.BackColor = Color.Transparent;
             sourcehotkeylabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             sourcehotkeylabel.ForeColor = Color.White;
-            sourcehotkeylabel.Location = new Point(457, 634);
+            sourcehotkeylabel.Location = new Point(160, 198);
+            sourcehotkeylabel.Margin = new Padding(1, 0, 1, 0);
             sourcehotkeylabel.Name = "sourcehotkeylabel";
-            sourcehotkeylabel.Size = new Size(151, 48);
+            sourcehotkeylabel.Size = new Size(51, 15);
             sourcehotkeylabel.TabIndex = 7;
             sourcehotkeylabel.Text = "Hotkey:";
             // 
@@ -161,9 +169,10 @@ namespace BBSaveOverwrite
             sourcefolderqlabel.AutoSize = true;
             sourcefolderqlabel.BackColor = Color.Red;
             sourcefolderqlabel.ForeColor = SystemColors.Info;
-            sourcefolderqlabel.Location = new Point(1854, 122);
+            sourcefolderqlabel.Location = new Point(649, 38);
+            sourcefolderqlabel.Margin = new Padding(1, 0, 1, 0);
             sourcefolderqlabel.Name = "sourcefolderqlabel";
-            sourcefolderqlabel.Size = new Size(36, 48);
+            sourcefolderqlabel.Size = new Size(12, 15);
             sourcefolderqlabel.TabIndex = 2;
             sourcefolderqlabel.Text = "?";
             toolTip1.SetToolTip(sourcefolderqlabel, "Select a '1' folder (name doesn't matter) from a shadPS4 'user/savedata' save backup.");
@@ -173,9 +182,10 @@ namespace BBSaveOverwrite
             destfolderqlabel.AutoSize = true;
             destfolderqlabel.BackColor = Color.Red;
             destfolderqlabel.ForeColor = SystemColors.Info;
-            destfolderqlabel.Location = new Point(1854, 250);
+            destfolderqlabel.Location = new Point(649, 78);
+            destfolderqlabel.Margin = new Padding(1, 0, 1, 0);
             destfolderqlabel.Name = "destfolderqlabel";
-            destfolderqlabel.Size = new Size(36, 48);
+            destfolderqlabel.Size = new Size(12, 15);
             destfolderqlabel.TabIndex = 5;
             destfolderqlabel.Text = "?";
             toolTip1.SetToolTip(destfolderqlabel, "Select your shadPS4 user/'savedata' folder.");
@@ -185,9 +195,10 @@ namespace BBSaveOverwrite
             overwritedestfolderqlabel.AutoSize = true;
             overwritedestfolderqlabel.BackColor = Color.Red;
             overwritedestfolderqlabel.ForeColor = SystemColors.Info;
-            overwritedestfolderqlabel.Location = new Point(1854, 506);
+            overwritedestfolderqlabel.Location = new Point(649, 158);
+            overwritedestfolderqlabel.Margin = new Padding(1, 0, 1, 0);
             overwritedestfolderqlabel.Name = "overwritedestfolderqlabel";
-            overwritedestfolderqlabel.Size = new Size(36, 48);
+            overwritedestfolderqlabel.Size = new Size(12, 15);
             overwritedestfolderqlabel.TabIndex = 15;
             overwritedestfolderqlabel.Text = "?";
             toolTip1.SetToolTip(overwritedestfolderqlabel, "\"Load save\" overwrites the shadPS4 save folder without asking.\r\n\"OK\" saves and registers the selected hotkey combination.");
@@ -197,9 +208,10 @@ namespace BBSaveOverwrite
             overwritesourcefolderqlabel.AutoSize = true;
             overwritesourcefolderqlabel.BackColor = Color.Red;
             overwritesourcefolderqlabel.ForeColor = SystemColors.Info;
-            overwritesourcefolderqlabel.Location = new Point(1854, 634);
+            overwritesourcefolderqlabel.Location = new Point(649, 198);
+            overwritesourcefolderqlabel.Margin = new Padding(1, 0, 1, 0);
             overwritesourcefolderqlabel.Name = "overwritesourcefolderqlabel";
-            overwritesourcefolderqlabel.Size = new Size(36, 48);
+            overwritesourcefolderqlabel.Size = new Size(12, 15);
             overwritesourcefolderqlabel.TabIndex = 22;
             overwritesourcefolderqlabel.Text = "?";
             toolTip1.SetToolTip(overwritesourcefolderqlabel, "\"Backup save\" backup the current shadPS4 save to the selected save backup folder.\r\n\"OK\" saves and registers the selected hotkey combination.");
@@ -209,9 +221,10 @@ namespace BBSaveOverwrite
             dualsensehkqlabel.AutoSize = true;
             dualsensehkqlabel.BackColor = Color.Red;
             dualsensehkqlabel.ForeColor = SystemColors.Info;
-            dualsensehkqlabel.Location = new Point(1854, 896);
+            dualsensehkqlabel.Location = new Point(649, 280);
+            dualsensehkqlabel.Margin = new Padding(1, 0, 1, 0);
             dualsensehkqlabel.Name = "dualsensehkqlabel";
-            dualsensehkqlabel.Size = new Size(36, 48);
+            dualsensehkqlabel.Size = new Size(12, 15);
             dualsensehkqlabel.TabIndex = 31;
             dualsensehkqlabel.Text = "?";
             toolTip1.SetToolTip(dualsensehkqlabel, "Enable PS5 DualSense controller hotkeys:\r\nCreate (Select) = Load save\r\nL3 + Option (Start) = Backup save\r\nR3 + Option (Start) = Archive backup");
@@ -221,9 +234,10 @@ namespace BBSaveOverwrite
             archivefolderqlabel.AutoSize = true;
             archivefolderqlabel.BackColor = Color.Red;
             archivefolderqlabel.ForeColor = SystemColors.Info;
-            archivefolderqlabel.Location = new Point(1854, 378);
+            archivefolderqlabel.Location = new Point(649, 118);
+            archivefolderqlabel.Margin = new Padding(1, 0, 1, 0);
             archivefolderqlabel.Name = "archivefolderqlabel";
-            archivefolderqlabel.Size = new Size(36, 48);
+            archivefolderqlabel.Size = new Size(12, 15);
             archivefolderqlabel.TabIndex = 8;
             archivefolderqlabel.Text = "?";
             toolTip1.SetToolTip(archivefolderqlabel, "Select an archive folder to archive/backup the save backup folder to.");
@@ -233,9 +247,10 @@ namespace BBSaveOverwrite
             archivesaveqlabel.AutoSize = true;
             archivesaveqlabel.BackColor = Color.Red;
             archivesaveqlabel.ForeColor = SystemColors.Info;
-            archivesaveqlabel.Location = new Point(1854, 762);
+            archivesaveqlabel.Location = new Point(649, 238);
+            archivesaveqlabel.Margin = new Padding(1, 0, 1, 0);
             archivesaveqlabel.Name = "archivesaveqlabel";
-            archivesaveqlabel.Size = new Size(36, 48);
+            archivesaveqlabel.Size = new Size(12, 15);
             archivesaveqlabel.TabIndex = 29;
             archivesaveqlabel.Text = "?";
             toolTip1.SetToolTip(archivesaveqlabel, resources.GetString("archivesaveqlabel.ToolTip"));
@@ -243,9 +258,10 @@ namespace BBSaveOverwrite
             // loadedtestbutton
             // 
             loadedtestbutton.FlatStyle = FlatStyle.System;
-            loadedtestbutton.Location = new Point(1589, 506);
+            loadedtestbutton.Location = new Point(556, 158);
+            loadedtestbutton.Margin = new Padding(1, 1, 1, 1);
             loadedtestbutton.Name = "loadedtestbutton";
-            loadedtestbutton.Size = new Size(51, 51);
+            loadedtestbutton.Size = new Size(18, 16);
             loadedtestbutton.TabIndex = 14;
             loadedtestbutton.Text = "L";
             loadedtestbutton.UseVisualStyleBackColor = true;
@@ -257,9 +273,10 @@ namespace BBSaveOverwrite
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(1371, 506);
+            label1.Location = new Point(480, 158);
+            label1.Margin = new Padding(1, 0, 1, 0);
             label1.Name = "label1";
-            label1.Size = new Size(201, 48);
+            label1.Size = new Size(67, 15);
             label1.TabIndex = 13;
             label1.Text = "Soundtest:";
             // 
@@ -269,18 +286,20 @@ namespace BBSaveOverwrite
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(1371, 634);
+            label2.Location = new Point(480, 198);
+            label2.Margin = new Padding(1, 0, 1, 0);
             label2.Name = "label2";
-            label2.Size = new Size(201, 48);
+            label2.Size = new Size(67, 15);
             label2.TabIndex = 14;
             label2.Text = "Soundtest:";
             // 
             // backedtestbutton
             // 
             backedtestbutton.FlatStyle = FlatStyle.System;
-            backedtestbutton.Location = new Point(1589, 634);
+            backedtestbutton.Location = new Point(556, 198);
+            backedtestbutton.Margin = new Padding(1, 1, 1, 1);
             backedtestbutton.Name = "backedtestbutton";
-            backedtestbutton.Size = new Size(51, 51);
+            backedtestbutton.Size = new Size(18, 16);
             backedtestbutton.TabIndex = 21;
             backedtestbutton.Text = "B";
             backedtestbutton.UseVisualStyleBackColor = true;
@@ -291,25 +310,28 @@ namespace BBSaveOverwrite
             dualsensecheckbox.AutoSize = true;
             dualsensecheckbox.BackColor = Color.Transparent;
             dualsensecheckbox.ForeColor = Color.White;
-            dualsensecheckbox.Location = new Point(1371, 893);
+            dualsensecheckbox.Location = new Point(480, 279);
+            dualsensecheckbox.Margin = new Padding(1, 1, 1, 1);
             dualsensecheckbox.Name = "dualsensecheckbox";
-            dualsensecheckbox.Size = new Size(430, 52);
+            dualsensecheckbox.Size = new Size(146, 19);
             dualsensecheckbox.TabIndex = 30;
             dualsensecheckbox.Text = "PS5 DualSense hotkeys";
             dualsensecheckbox.UseVisualStyleBackColor = false;
             // 
             // archivefoldertextbox
             // 
-            archivefoldertextbox.Location = new Point(457, 365);
+            archivefoldertextbox.Location = new Point(160, 114);
+            archivefoldertextbox.Margin = new Padding(1, 1, 1, 1);
             archivefoldertextbox.Name = "archivefoldertextbox";
-            archivefoldertextbox.Size = new Size(1364, 55);
+            archivefoldertextbox.Size = new Size(480, 23);
             archivefoldertextbox.TabIndex = 7;
             // 
             // archivefolderbutton
             // 
-            archivefolderbutton.Location = new Point(63, 365);
+            archivefolderbutton.Location = new Point(22, 114);
+            archivefolderbutton.Margin = new Padding(1, 1, 1, 1);
             archivefolderbutton.Name = "archivefolderbutton";
-            archivefolderbutton.Size = new Size(371, 74);
+            archivefolderbutton.Size = new Size(130, 23);
             archivefolderbutton.TabIndex = 6;
             archivefolderbutton.Text = "Save archive folder";
             archivefolderbutton.UseVisualStyleBackColor = true;
@@ -318,9 +340,10 @@ namespace BBSaveOverwrite
             // archivedtestbutton
             // 
             archivedtestbutton.FlatStyle = FlatStyle.System;
-            archivedtestbutton.Location = new Point(1589, 762);
+            archivedtestbutton.Location = new Point(556, 238);
+            archivedtestbutton.Margin = new Padding(1, 1, 1, 1);
             archivedtestbutton.Name = "archivedtestbutton";
-            archivedtestbutton.Size = new Size(51, 51);
+            archivedtestbutton.Size = new Size(18, 16);
             archivedtestbutton.TabIndex = 28;
             archivedtestbutton.Text = "A";
             archivedtestbutton.UseVisualStyleBackColor = true;
@@ -332,9 +355,10 @@ namespace BBSaveOverwrite
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(1371, 762);
+            label3.Location = new Point(480, 238);
+            label3.Margin = new Padding(1, 0, 1, 0);
             label3.Name = "label3";
-            label3.Size = new Size(201, 48);
+            label3.Size = new Size(67, 15);
             label3.TabIndex = 24;
             label3.Text = "Soundtest:";
             // 
@@ -344,9 +368,10 @@ namespace BBSaveOverwrite
             archivehotkeylabel.BackColor = Color.Transparent;
             archivehotkeylabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             archivehotkeylabel.ForeColor = Color.White;
-            archivehotkeylabel.Location = new Point(457, 762);
+            archivehotkeylabel.Location = new Point(160, 238);
+            archivehotkeylabel.Margin = new Padding(1, 0, 1, 0);
             archivehotkeylabel.Name = "archivehotkeylabel";
-            archivehotkeylabel.Size = new Size(151, 48);
+            archivehotkeylabel.Size = new Size(51, 15);
             archivehotkeylabel.TabIndex = 22;
             archivehotkeylabel.Text = "Hotkey:";
             // 
@@ -354,9 +379,10 @@ namespace BBSaveOverwrite
             // 
             archivesavebutton.BackColor = Color.Plum;
             archivesavebutton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            archivesavebutton.Location = new Point(63, 755);
+            archivesavebutton.Location = new Point(22, 236);
+            archivesavebutton.Margin = new Padding(1, 1, 1, 1);
             archivesavebutton.Name = "archivesavebutton";
-            archivesavebutton.Size = new Size(371, 70);
+            archivesavebutton.Size = new Size(130, 22);
             archivesavebutton.TabIndex = 23;
             archivesavebutton.Text = "Archive backup";
             archivesavebutton.UseVisualStyleBackColor = false;
@@ -367,10 +393,9 @@ namespace BBSaveOverwrite
             loadmodifier1combobox.DropDownStyle = ComboBoxStyle.DropDownList;
             loadmodifier1combobox.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             loadmodifier1combobox.FormattingEnabled = true;
-            loadmodifier1combobox.Location = new Point(614, 499);
-            loadmodifier1combobox.Margin = new Padding(9, 10, 9, 10);
+            loadmodifier1combobox.Location = new Point(215, 156);
             loadmodifier1combobox.Name = "loadmodifier1combobox";
-            loadmodifier1combobox.Size = new Size(167, 56);
+            loadmodifier1combobox.Size = new Size(61, 23);
             loadmodifier1combobox.TabIndex = 10;
             loadmodifier1combobox.SelectedIndexChanged += loadmodifier1combobox_SelectedIndexChanged;
             // 
@@ -379,10 +404,9 @@ namespace BBSaveOverwrite
             loadmodifier2combobox.DropDownStyle = ComboBoxStyle.DropDownList;
             loadmodifier2combobox.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             loadmodifier2combobox.FormattingEnabled = true;
-            loadmodifier2combobox.Location = new Point(806, 499);
-            loadmodifier2combobox.Margin = new Padding(9, 10, 9, 10);
+            loadmodifier2combobox.Location = new Point(282, 156);
             loadmodifier2combobox.Name = "loadmodifier2combobox";
-            loadmodifier2combobox.Size = new Size(167, 56);
+            loadmodifier2combobox.Size = new Size(61, 23);
             loadmodifier2combobox.TabIndex = 11;
             loadmodifier2combobox.SelectedIndexChanged += loadmodifier2combobox_SelectedIndexChanged;
             // 
@@ -391,19 +415,17 @@ namespace BBSaveOverwrite
             loadmodifier3combobox.DropDownStyle = ComboBoxStyle.DropDownList;
             loadmodifier3combobox.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             loadmodifier3combobox.FormattingEnabled = true;
-            loadmodifier3combobox.Location = new Point(997, 499);
-            loadmodifier3combobox.Margin = new Padding(9, 10, 9, 10);
+            loadmodifier3combobox.Location = new Point(349, 156);
             loadmodifier3combobox.Name = "loadmodifier3combobox";
-            loadmodifier3combobox.Size = new Size(167, 56);
+            loadmodifier3combobox.Size = new Size(61, 23);
             loadmodifier3combobox.TabIndex = 12;
             // 
             // loadhotkeysavebutton
             // 
             loadhotkeysavebutton.FlatStyle = FlatStyle.System;
-            loadhotkeysavebutton.Location = new Point(1189, 499);
-            loadhotkeysavebutton.Margin = new Padding(9, 10, 9, 10);
+            loadhotkeysavebutton.Location = new Point(416, 156);
             loadhotkeysavebutton.Name = "loadhotkeysavebutton";
-            loadhotkeysavebutton.Size = new Size(66, 74);
+            loadhotkeysavebutton.Size = new Size(23, 23);
             loadhotkeysavebutton.TabIndex = 13;
             loadhotkeysavebutton.Text = "OK";
             loadhotkeysavebutton.UseVisualStyleBackColor = true;
@@ -412,10 +434,9 @@ namespace BBSaveOverwrite
             // backuphotkeysavebutton
             // 
             backuphotkeysavebutton.FlatStyle = FlatStyle.System;
-            backuphotkeysavebutton.Location = new Point(1189, 627);
-            backuphotkeysavebutton.Margin = new Padding(9, 10, 9, 10);
+            backuphotkeysavebutton.Location = new Point(416, 196);
             backuphotkeysavebutton.Name = "backuphotkeysavebutton";
-            backuphotkeysavebutton.Size = new Size(66, 74);
+            backuphotkeysavebutton.Size = new Size(23, 23);
             backuphotkeysavebutton.TabIndex = 20;
             backuphotkeysavebutton.Text = "OK";
             backuphotkeysavebutton.UseVisualStyleBackColor = true;
@@ -426,10 +447,9 @@ namespace BBSaveOverwrite
             backupmodifier3combobox.DropDownStyle = ComboBoxStyle.DropDownList;
             backupmodifier3combobox.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             backupmodifier3combobox.FormattingEnabled = true;
-            backupmodifier3combobox.Location = new Point(997, 627);
-            backupmodifier3combobox.Margin = new Padding(9, 10, 9, 10);
+            backupmodifier3combobox.Location = new Point(349, 196);
             backupmodifier3combobox.Name = "backupmodifier3combobox";
-            backupmodifier3combobox.Size = new Size(167, 56);
+            backupmodifier3combobox.Size = new Size(61, 23);
             backupmodifier3combobox.TabIndex = 19;
             // 
             // backupmodifier2combobox
@@ -437,10 +457,9 @@ namespace BBSaveOverwrite
             backupmodifier2combobox.DropDownStyle = ComboBoxStyle.DropDownList;
             backupmodifier2combobox.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             backupmodifier2combobox.FormattingEnabled = true;
-            backupmodifier2combobox.Location = new Point(806, 627);
-            backupmodifier2combobox.Margin = new Padding(9, 10, 9, 10);
+            backupmodifier2combobox.Location = new Point(282, 196);
             backupmodifier2combobox.Name = "backupmodifier2combobox";
-            backupmodifier2combobox.Size = new Size(167, 56);
+            backupmodifier2combobox.Size = new Size(61, 23);
             backupmodifier2combobox.TabIndex = 18;
             backupmodifier2combobox.SelectedIndexChanged += backupmodifier2combobox_SelectedIndexChanged;
             // 
@@ -449,20 +468,18 @@ namespace BBSaveOverwrite
             backupmodifier1combobox.DropDownStyle = ComboBoxStyle.DropDownList;
             backupmodifier1combobox.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             backupmodifier1combobox.FormattingEnabled = true;
-            backupmodifier1combobox.Location = new Point(614, 627);
-            backupmodifier1combobox.Margin = new Padding(9, 10, 9, 10);
+            backupmodifier1combobox.Location = new Point(215, 196);
             backupmodifier1combobox.Name = "backupmodifier1combobox";
-            backupmodifier1combobox.Size = new Size(167, 56);
+            backupmodifier1combobox.Size = new Size(61, 23);
             backupmodifier1combobox.TabIndex = 17;
             backupmodifier1combobox.SelectedIndexChanged += backupmodifier1combobox_SelectedIndexChanged;
             // 
             // archivehotkeysavebutton
             // 
             archivehotkeysavebutton.FlatStyle = FlatStyle.System;
-            archivehotkeysavebutton.Location = new Point(1189, 755);
-            archivehotkeysavebutton.Margin = new Padding(9, 10, 9, 10);
+            archivehotkeysavebutton.Location = new Point(416, 236);
             archivehotkeysavebutton.Name = "archivehotkeysavebutton";
-            archivehotkeysavebutton.Size = new Size(66, 74);
+            archivehotkeysavebutton.Size = new Size(23, 23);
             archivehotkeysavebutton.TabIndex = 27;
             archivehotkeysavebutton.Text = "OK";
             archivehotkeysavebutton.UseVisualStyleBackColor = true;
@@ -473,10 +490,9 @@ namespace BBSaveOverwrite
             archivemodifier3combobox.DropDownStyle = ComboBoxStyle.DropDownList;
             archivemodifier3combobox.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             archivemodifier3combobox.FormattingEnabled = true;
-            archivemodifier3combobox.Location = new Point(997, 755);
-            archivemodifier3combobox.Margin = new Padding(9, 10, 9, 10);
+            archivemodifier3combobox.Location = new Point(349, 236);
             archivemodifier3combobox.Name = "archivemodifier3combobox";
-            archivemodifier3combobox.Size = new Size(167, 56);
+            archivemodifier3combobox.Size = new Size(61, 23);
             archivemodifier3combobox.TabIndex = 26;
             // 
             // archivemodifier2combobox
@@ -484,10 +500,9 @@ namespace BBSaveOverwrite
             archivemodifier2combobox.DropDownStyle = ComboBoxStyle.DropDownList;
             archivemodifier2combobox.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             archivemodifier2combobox.FormattingEnabled = true;
-            archivemodifier2combobox.Location = new Point(806, 755);
-            archivemodifier2combobox.Margin = new Padding(9, 10, 9, 10);
+            archivemodifier2combobox.Location = new Point(282, 236);
             archivemodifier2combobox.Name = "archivemodifier2combobox";
-            archivemodifier2combobox.Size = new Size(167, 56);
+            archivemodifier2combobox.Size = new Size(61, 23);
             archivemodifier2combobox.TabIndex = 25;
             archivemodifier2combobox.SelectedIndexChanged += archivemodifier2combobox_SelectedIndexChanged;
             // 
@@ -496,20 +511,18 @@ namespace BBSaveOverwrite
             archivemodifier1combobox.DropDownStyle = ComboBoxStyle.DropDownList;
             archivemodifier1combobox.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             archivemodifier1combobox.FormattingEnabled = true;
-            archivemodifier1combobox.Location = new Point(614, 755);
-            archivemodifier1combobox.Margin = new Padding(9, 10, 9, 10);
+            archivemodifier1combobox.Location = new Point(215, 236);
             archivemodifier1combobox.Name = "archivemodifier1combobox";
-            archivemodifier1combobox.Size = new Size(167, 56);
+            archivemodifier1combobox.Size = new Size(61, 23);
             archivemodifier1combobox.TabIndex = 24;
             archivemodifier1combobox.SelectedIndexChanged += archivemodifier1combobox_SelectedIndexChanged;
             // 
             // bbsaveoverwriteform
             // 
-            AutoScaleDimensions = new SizeF(20F, 48F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1943, 1011);
+            ClientSize = new Size(680, 316);
             Controls.Add(archivehotkeysavebutton);
             Controls.Add(archivemodifier3combobox);
             Controls.Add(archivemodifier2combobox);
@@ -549,6 +562,7 @@ namespace BBSaveOverwrite
             Controls.Add(sourcefolderbutton);
             Controls.Add(sourcefoldertextbox);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(1, 1, 1, 1);
             MaximizeBox = false;
             Name = "bbsaveoverwriteform";
             Text = "BBSaveOverwrite";
