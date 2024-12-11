@@ -16,10 +16,10 @@ Supports DualSense hotkeys (can be toggled).
 
 
 Installation:
-Extract and run the exe (from anywhere)
+- Extract and run the exe (from anywhere)
 - MS .Net 8.0 might be needed / requested to be installed 
-Configure your save folders and hotkeys
-Minimize BB Save Overwrite window, start shadPS4 and enjoy :)
+- Configure your save folders and hotkeys
+- Minimize BB Save Overwrite window, start shadPS4 and enjoy :)
 
 Have fun!
 
