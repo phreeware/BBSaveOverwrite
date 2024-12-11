@@ -7,7 +7,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationIcon>blood_vial_ocU_icon.ico</ApplicationIcon>
-    <Version>$(VersionPrefix) 2.0</Version>
+    <Version>$(VersionPrefix) 2.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

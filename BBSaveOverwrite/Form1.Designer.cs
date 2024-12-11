@@ -77,7 +77,7 @@ namespace BBSaveOverwrite
             // sourcefoldertextbox
             // 
             sourcefoldertextbox.Location = new Point(160, 34);
-            sourcefoldertextbox.Margin = new Padding(1, 1, 1, 1);
+            sourcefoldertextbox.Margin = new Padding(1);
             sourcefoldertextbox.Name = "sourcefoldertextbox";
             sourcefoldertextbox.Size = new Size(480, 23);
             sourcefoldertextbox.TabIndex = 1;
@@ -85,7 +85,7 @@ namespace BBSaveOverwrite
             // sourcefolderbutton
             // 
             sourcefolderbutton.Location = new Point(22, 34);
-            sourcefolderbutton.Margin = new Padding(1, 1, 1, 1);
+            sourcefolderbutton.Margin = new Padding(1);
             sourcefolderbutton.Name = "sourcefolderbutton";
             sourcefolderbutton.Size = new Size(130, 23);
             sourcefolderbutton.TabIndex = 0;
@@ -96,7 +96,7 @@ namespace BBSaveOverwrite
             // destfolderbutton
             // 
             destfolderbutton.Location = new Point(22, 75);
-            destfolderbutton.Margin = new Padding(1, 1, 1, 1);
+            destfolderbutton.Margin = new Padding(1);
             destfolderbutton.Name = "destfolderbutton";
             destfolderbutton.Size = new Size(130, 23);
             destfolderbutton.TabIndex = 3;
@@ -107,7 +107,7 @@ namespace BBSaveOverwrite
             // destfoldertextbox
             // 
             destfoldertextbox.Location = new Point(160, 75);
-            destfoldertextbox.Margin = new Padding(1, 1, 1, 1);
+            destfoldertextbox.Margin = new Padding(1);
             destfoldertextbox.Name = "destfoldertextbox";
             destfoldertextbox.Size = new Size(480, 23);
             destfoldertextbox.TabIndex = 4;
@@ -130,7 +130,7 @@ namespace BBSaveOverwrite
             overwritedestbutton.BackColor = Color.DarkTurquoise;
             overwritedestbutton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             overwritedestbutton.Location = new Point(22, 156);
-            overwritedestbutton.Margin = new Padding(1, 1, 1, 1);
+            overwritedestbutton.Margin = new Padding(1);
             overwritedestbutton.Name = "overwritedestbutton";
             overwritedestbutton.Size = new Size(130, 22);
             overwritedestbutton.TabIndex = 9;
@@ -143,7 +143,7 @@ namespace BBSaveOverwrite
             overwritesourcebutton.BackColor = Color.Coral;
             overwritesourcebutton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             overwritesourcebutton.Location = new Point(22, 196);
-            overwritesourcebutton.Margin = new Padding(1, 1, 1, 1);
+            overwritesourcebutton.Margin = new Padding(1);
             overwritesourcebutton.Name = "overwritesourcebutton";
             overwritesourcebutton.Size = new Size(130, 22);
             overwritesourcebutton.TabIndex = 16;
@@ -253,13 +253,13 @@ namespace BBSaveOverwrite
             archivesaveqlabel.Size = new Size(12, 15);
             archivesaveqlabel.TabIndex = 29;
             archivesaveqlabel.Text = "?";
-            toolTip1.SetToolTip(archivesaveqlabel, resources.GetString("archivesaveqlabel.ToolTip"));
+            toolTip1.SetToolTip(archivesaveqlabel, "\"Archive backup\" archives the current save backup to a new folder inside the selected archive folder.\r\n\"OK\" saves and registers the selected hotkey combination.");
             // 
             // loadedtestbutton
             // 
             loadedtestbutton.FlatStyle = FlatStyle.System;
             loadedtestbutton.Location = new Point(556, 158);
-            loadedtestbutton.Margin = new Padding(1, 1, 1, 1);
+            loadedtestbutton.Margin = new Padding(1);
             loadedtestbutton.Name = "loadedtestbutton";
             loadedtestbutton.Size = new Size(18, 16);
             loadedtestbutton.TabIndex = 14;
@@ -297,7 +297,7 @@ namespace BBSaveOverwrite
             // 
             backedtestbutton.FlatStyle = FlatStyle.System;
             backedtestbutton.Location = new Point(556, 198);
-            backedtestbutton.Margin = new Padding(1, 1, 1, 1);
+            backedtestbutton.Margin = new Padding(1);
             backedtestbutton.Name = "backedtestbutton";
             backedtestbutton.Size = new Size(18, 16);
             backedtestbutton.TabIndex = 21;
@@ -311,7 +311,7 @@ namespace BBSaveOverwrite
             dualsensecheckbox.BackColor = Color.Transparent;
             dualsensecheckbox.ForeColor = Color.White;
             dualsensecheckbox.Location = new Point(480, 279);
-            dualsensecheckbox.Margin = new Padding(1, 1, 1, 1);
+            dualsensecheckbox.Margin = new Padding(1);
             dualsensecheckbox.Name = "dualsensecheckbox";
             dualsensecheckbox.Size = new Size(146, 19);
             dualsensecheckbox.TabIndex = 30;
@@ -321,7 +321,7 @@ namespace BBSaveOverwrite
             // archivefoldertextbox
             // 
             archivefoldertextbox.Location = new Point(160, 114);
-            archivefoldertextbox.Margin = new Padding(1, 1, 1, 1);
+            archivefoldertextbox.Margin = new Padding(1);
             archivefoldertextbox.Name = "archivefoldertextbox";
             archivefoldertextbox.Size = new Size(480, 23);
             archivefoldertextbox.TabIndex = 7;
@@ -329,7 +329,7 @@ namespace BBSaveOverwrite
             // archivefolderbutton
             // 
             archivefolderbutton.Location = new Point(22, 114);
-            archivefolderbutton.Margin = new Padding(1, 1, 1, 1);
+            archivefolderbutton.Margin = new Padding(1);
             archivefolderbutton.Name = "archivefolderbutton";
             archivefolderbutton.Size = new Size(130, 23);
             archivefolderbutton.TabIndex = 6;
@@ -341,7 +341,7 @@ namespace BBSaveOverwrite
             // 
             archivedtestbutton.FlatStyle = FlatStyle.System;
             archivedtestbutton.Location = new Point(556, 238);
-            archivedtestbutton.Margin = new Padding(1, 1, 1, 1);
+            archivedtestbutton.Margin = new Padding(1);
             archivedtestbutton.Name = "archivedtestbutton";
             archivedtestbutton.Size = new Size(18, 16);
             archivedtestbutton.TabIndex = 28;
@@ -380,7 +380,7 @@ namespace BBSaveOverwrite
             archivesavebutton.BackColor = Color.Plum;
             archivesavebutton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             archivesavebutton.Location = new Point(22, 236);
-            archivesavebutton.Margin = new Padding(1, 1, 1, 1);
+            archivesavebutton.Margin = new Padding(1);
             archivesavebutton.Name = "archivesavebutton";
             archivesavebutton.Size = new Size(130, 22);
             archivesavebutton.TabIndex = 23;
@@ -521,6 +521,7 @@ namespace BBSaveOverwrite
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(680, 316);
             Controls.Add(archivehotkeysavebutton);
@@ -562,7 +563,7 @@ namespace BBSaveOverwrite
             Controls.Add(sourcefolderbutton);
             Controls.Add(sourcefoldertextbox);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(1, 1, 1, 1);
+            Margin = new Padding(1);
             MaximizeBox = false;
             Name = "bbsaveoverwriteform";
             Text = "BBSaveOverwrite";
