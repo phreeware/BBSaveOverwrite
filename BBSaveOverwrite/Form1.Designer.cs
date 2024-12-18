@@ -227,7 +227,7 @@ namespace BBSaveOverwrite
             dualsensehkqlabel.Size = new Size(12, 15);
             dualsensehkqlabel.TabIndex = 31;
             dualsensehkqlabel.Text = "?";
-            toolTip1.SetToolTip(dualsensehkqlabel, "Enable PS5 DualSense controller hotkeys:\r\nCreate (Select) = Load save\r\nL3 + Option (Start) = Backup save\r\nR3 + Option (Start) = Archive backup");
+            toolTip1.SetToolTip(dualsensehkqlabel, "Enable PS5 DualSense controller hotkeys:\r\nR3 + Create (Select) = Load save\r\nL3 + Option (Start) = Backup save\r\nR3 + Option (Start) = Archive backup");
             // 
             // archivefolderqlabel
             // 

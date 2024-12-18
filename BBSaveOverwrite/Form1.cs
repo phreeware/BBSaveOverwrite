@@ -571,7 +571,7 @@ namespace BBSaveOverwrite
         [DllImport("user32.dll", SetLastError = true)]
         private static extern bool RegisterRawInputDevices(RAWINPUTDEVICE[] pRawInputDevice, uint uiNumDevices, uint cbSize);
 
-        private bool SelPressed = false;
+        private bool LoadComboTriggered = false;
         private bool BackupComboTriggered = false;
         private bool ArchiveComboTriggered = false;
 
@@ -676,15 +676,15 @@ namespace BBSaveOverwrite
                         ArchiveComboTriggered = false;
                     }
 
-                    // Check for single Select button press
-                    if (Sel && !SelPressed)
+                    // Detect when both R3 and Sel are pressed
+                    if (R3 && Sel && !LoadComboTriggered)
                     {
-                        SelPressed = true;
+                        LoadComboTriggered = true;
                         CopyToDest();
                     }
-                    else if (!Sel)
+                    else if (!R3 || !Sel)
                     {
-                        SelPressed = false;
+                        LoadComboTriggered = false;
                     }
                 }
             }
