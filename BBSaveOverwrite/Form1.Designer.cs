@@ -1,4 +1,6 @@
 ﻿
+using BBSaveOverwrite.Properties;
+using Microsoft.VisualBasic;
 using System.Linq.Expressions;
 
 namespace BBSaveOverwrite
@@ -573,8 +575,12 @@ namespace BBSaveOverwrite
             PerformLayout();
         }
 
+        
         public void bbsaveoverwriteform_Load(object sender, EventArgs e)
         {
+            //Migrate previous saved settings to new version
+            Properties.Settings.Default.Upgrade();
+
             PopulateHotKeyComboBoxes();
             HotKeyManager.HotKeyPressed += new EventHandler<HotKeyEventArgs>(HotKeyManager_HotKeyPressed);
 
